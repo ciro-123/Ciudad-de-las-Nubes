@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centered Timeline Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- SECTION 1: Horizontal Timeline -->
+  <section id="intro" class="text-center d-flex flex-column justify-content-center align-items-center">
+    <div class="parallax-container">
+      <div class="parallax-bg sky"></div>
+      <div class="parallax-bg cloud1"></div>
+      <div class="parallax-bg cloud2"></div>
+      <div class="parallax-bg cloud3"></div>
+    </div>
+
+    <!-- Text Content -->
+    <h1 class="mb-4">Lorem Ipsum Timeline</h1>
+    <p class="lead mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae leo id mi tempus congue.</p>
+
+    <div class="timeline-horizontal">
+      <!-- timeline nodes here -->
+        <div class="timeline-node">
+        <button data-target="#phase1">1</button>
+        <p>Phase 1</p>
+        </div>
+        <div class="timeline-node">
+        <button data-target="#phase2">2</button>
+        <p>Phase 2</p>
+        </div>
+        <div class="timeline-node">
+        <button data-target="#phase3">3</button>
+        <p>Phase 3</p>
+        </div>
+        <div class="timeline-node">
+        <button data-target="#phase4">4</button>
+        <p>Phase 4</p>
+        </div>
+    </div>
+    </section>
+
+
+  <!-- VERTICAL TIMELINE -->
+  <div class="timeline-wrapper">
+    <section id="phase1" class="timeline-section left bg-transparent">
+      <div class="timeline-content">
+        <h2>Phase 1 - Lorem Ipsum</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus accumsan nulla id urna luctus, quis condimentum metus imperdiet. Praesent ut est et nulla cursus vehicula sed non lorem.
+        </p>
+      </div>
+    </section>
+
+    <section id="phase2" class="timeline-section right bg-transparent">
+      <div class="timeline-content">
+        <h2>Phase 2 - Dolor Sit Amet</h2>
+        <p>
+          Suspendisse potenti. Mauris a justo ut est congue dictum. Donec porta cursus erat, vel cursus erat ultricies id. Integer vitae nunc vitae ligula feugiat imperdiet.
+        </p>
+      </div>
+    </section>
+
+    <section id="phase3" class="timeline-section left bg-transparent">
+      <div class="timeline-content">
+        <h2>Phase 3 - Consectetur Adipiscing</h2>
+        <p>
+          Cras tincidunt, neque a vehicula sagittis, libero lorem mattis massa, eget eleifend libero arcu eget urna. Duis euismod libero nec nisl posuere, in volutpat est suscipit.
+        </p>
+      </div>
+    </section>
+
+    <section id="phase4" class="timeline-section right bg-transparent">
+      <div class="timeline-content">
+        <h2>Phase 4 - Elit Sed Do</h2>
+        <p>
+          Phasellus nec magna eu erat placerat consectetur. Sed at sapien ut lectus tincidunt eleifend. In gravida interdum velit nec tincidunt. Integer id ligula in leo gravida bibendum.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
