@@ -9,6 +9,11 @@
 </head>
 
 <body>
+  <div class="language-toggle position-fixed top-0 end-0 p-3">
+    <button onclick="switchLanguage('en')" class="btn btn-light me-2">EN</button>
+    <button onclick="switchLanguage('es')" class="btn btn-light">ES</button>
+  </div>
+
   <!-- SECTION 1: Horizontal Timeline -->
   <section id="intro" class="text-center d-flex flex-column justify-content-center align-items-center">
     <div class="parallax-container">
@@ -18,111 +23,24 @@
       <div class="parallax-bg cloud3"></div>
     </div>
 
-    <!-- Text Content -->
-    <h1 class="mb-4">Ciudad de las nubes</h1>
-    <p class="lead mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae leo id mi tempus congue.</p>
+    <!-- Text Content (will be filled by JS) -->
+    <h1 id="main-title" class="mb-4"></h1>
+    <p id="main-desc" class="lead mb-5"></p>
 
-    <div class="timeline-horizontal">
-      <!-- timeline nodes here -->
-        <div class="timeline-node">
-        <button data-target="#phase1">1</button>
-        <p>Leyendas</p>
-        </div>
-        <div class="timeline-node">
-        <button data-target="#phase2">2</button>
-        <p>Conquista</p>
-        </div>
-        <div class="timeline-node">
-        <button data-target="#phase3">3</button>
-        <p>Dominio</p>
-        </div>
-        <div class="timeline-node">
-        <button data-target="#phase4">4</button>
-        <p>Decadencia</p>
-        </div>
-        <div class="timeline-node">
-        <button data-target="#phase5">5</button>
-        <p>Liberación</p>
-        </div>
-        <div class="timeline-node">
-        <button data-target="#phase6">6</button>
-        <p>Guerra Total</p>
-        </div>
-        <div class="timeline-node">
-        <button data-target="#phase7">7</button>
-        <p>Torres</p>
-        </div>
+    <div class="timeline-horizontal" id="timeline-horizontal">
+      <!-- dynamically populated -->
     </div>
-    </section>
-
+  </section>
 
   <!-- VERTICAL TIMELINE -->
-  <div class="timeline-wrapper">
-      <section id="phase1" class="timeline-section left bg-transparent">
-        <div class="timeline-content">
-          <h2>Leyendas</h2>
-          <p>
-            Bohemundo y sus locuras
-          </p>
-        </div>
-      </section>
-
-      <section id="phase2" class="timeline-section right bg-transparent">
-        <div class="timeline-content">
-          <h2>Conquista</h2>
-          <p>
-            Conquistota
-          </p>
-        </div>
-      </section>
-
-      <section id="phase3" class="timeline-section left bg-transparent">
-        <div class="timeline-content">
-          <h2>Dominio</h2>
-          <p>
-            Dominion
-          </p>
-        </div>
-      </section>
-
-      <section id="phase4" class="timeline-section right bg-transparent">
-        <div class="timeline-content">
-          <h2>Decadencia</h2>
-          <p>
-            Decadencia
-          </p>
-        </div>
-      </section>
-
-    <section id="phase5" class="timeline-section left bg-transparent">
-      <div class="timeline-content">
-        <h2>Liberación</h2>
-        <p>
-          Viva la revolucion
-        </p>
-      </div>
-    </section>
-
-    <section id="phase6" class="timeline-section right bg-transparent">
-      <div class="timeline-content">
-        <h2>Guerra Total</h2>
-        <p>
-          WWII
-        </p>
-      </div>
-    </section>
-
-    <section id="phase7" class="timeline-section left bg-transparent">
-      <div class="timeline-content">
-        <h2>Torres Celestiales</h2>
-        <p>
-          Torres que son celestes type shift
-        </p>
-      </div>
-    </section>
+  <div class="timeline-wrapper" id="timeline-wrapper">
+    <!-- dynamically populated -->
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Language scripts -->
+  <script src="lang-en.js"></script>
+  <script src="lang-es.js"></script>
   <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
