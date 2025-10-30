@@ -277,7 +277,7 @@ section {
   /* make sections behave as flexible columns so cards can align toward center line */
   display: flex;
   align-items: center;
-  min-height: 70vh;
+  min-height: 30vh;
   /* slightly larger to give the card vertical room */
   box-sizing: border-box;
 }
@@ -520,7 +520,9 @@ section {
   .timeline-section.right {
     width: 100%;
     left: 0 !important;
-    text-align: left;
+    text-align: left;.timeline-section {
+}
+
   }
 
   .timeline-section::before {
