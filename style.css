@@ -258,13 +258,15 @@ section {
 
 .parallax-bg.cloud1 {
   background-image: url("imgs/clouds3.png");
+  background-size: contain;
   z-index: 1;
 }
 
 .parallax-bg.cloud2 {
   background-image: url("imgs/clouds1fix.png");
+  background-size: contain;
   z-index: 2;
-  top: 300px;
+  top: 600px;
 }
 
 .parallax-container {
