@@ -23,7 +23,7 @@ section {
 }
 
 .language-toggle .btn {
-  background-color: #0d6efd;
+  background-color: rgba(57, 98, 156);
   color: #fff;
   border: none;
   font-weight: 600;
@@ -117,11 +117,24 @@ section {
   height: 55px;
   border-radius: 50%;
   border: none;
-  background-color: #0d6efd;
+  background-color: rgba(57, 98, 156);
   color: #fff;
   font-weight: bold;
   transition: 0.3s;
 }
+
+.timeline-node button:disabled {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  background-color: gray;
+  color: #fff;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: not-allowed;
+}
+
 
 .timeline-node button:hover {
   background-color: #0b5ed7;
@@ -194,7 +207,7 @@ section {
   left: 50%;
   transform: translateX(-50%);
   width: 4px;
-  background-color: #0d6efd;
+  background-color: rgba(57, 98, 156);
 }
 
 .timeline-section {
@@ -223,7 +236,7 @@ section {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #0d6efd;
+  background-color: rgba(57, 98, 156);
   z-index: 1;
 }
 
@@ -245,7 +258,7 @@ section {
 }
 
 .timeline-content h2 {
-  color: #0d6efd;
+  color: rgba(57, 98, 156);
 }
 
 /* ---------- PHASE CARD (image + text + links with preview) ---------- */
@@ -281,6 +294,7 @@ section {
 }
 
 .phase-text {
+  text-align: justify;
   width: 54%;
   padding: 1.25rem;
   display: flex;
@@ -322,7 +336,7 @@ section {
   display: inline-block;
   padding: 0.5rem 0.8rem;
   border-radius: 6px;
-  background: #0d6efd;
+  background: rgba(57, 98, 156);
   color: #fff;
   text-decoration: none;
   transition: transform 0.15s ease, background 0.15s ease;
@@ -337,7 +351,9 @@ section {
 .preview-card {
   position: absolute;
   display: none;
-  width: 260px;
+  /* allow the card to size to its content but cap the width */
+  width: auto;
+  max-width: 260px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -348,21 +364,74 @@ section {
 }
 
 .preview-card .preview-img {
-  height: 140px;
-  overflow: hidden;
+  /* let the image determine the height so the whole image is visible */
+  height: auto;
+  overflow: visible;
 }
 
 .preview-card .preview-img img {
+  /* limit width, keep aspect ratio and show full image */
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   display: block;
+}
+
+/* Tag that shows status (released / wip) on the preview image */
+.preview-card .preview-img {
+  position: relative; /* ancestor for absolute tag */
+}
+/* Hide the tag visually while keeping it in the DOM for JS to update.
+   The tag's content and classes remain available to scripts, but it's not shown. */
+.preview-card .preview-img .tag {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Visual hint for disabled (wip) links in lists */
+.phase-bottom ul li a.disabled {
+  cursor: not-allowed;
+  opacity: 0.78;
+  background-color: gray; /* make WIP links visually gray */
+  color: #fff; /* ensure text remains readable */
+}
+
+.phase-bottom ul li a.disabled:hover {
+  background-color: gray;
+  transform: none;
 }
 
 .preview-card .preview-text {
   padding: 0.75rem;
   font-size: 0.95rem;
   color: #111;
+}
+
+/* Make preview card background match the link state: released -> blue, wip -> gray */
+.preview-card.released {
+  background: rgba(57, 98, 156); /* same base blue as links */
+  color: #fff;
+}
+.preview-card.released .preview-text {
+  color: #fff;
+}
+.preview-card.released .preview-img .tag {
+  /* use a stronger blue for the tag so it remains distinct */
+  background: #0b5ed7;
+}
+
+.preview-card.wip {
+  background: gray;
+  color: #fff;
+}
+.preview-card.wip .preview-text {
+  color: #fff;
+}
+.preview-card.wip .preview-img .tag {
+  background: #6c757d; /* bootstrap secondary-ish */
 }
 
 /* ---------- RESPONSIVE ---------- */

@@ -62,8 +62,13 @@ function populatePage(lang) {
         const pText = (it.previewText || it.preview || phase.content).replace(/"/g, '&quot;');
         const pImg = it.previewImg || it.img || phase.img;
         const label = it.label || it.title || 'Link';
-        const href = it.href || '#';
-        return `<li><a href="${href}" data-preview-text="${pText}" data-preview-img="${pImg}">${label}</a></li>`;
+        // support a status field: 'wip' or 'released' (default released)
+  // support either `status` or legacy `state` from language files
+  const status = ((it.status || it.state) || 'released').toLowerCase();
+        // if wip, avoid navigating away by using '#' and mark as disabled for styling
+        const href = status === 'wip' ? '#' : (it.href || '#');
+        const disabledAttrs = status === 'wip' ? 'aria-disabled="true" class="disabled"' : '';
+        return `<li><a href="${href}" data-preview-text="${pText}" data-preview-img="${pImg}" data-status="${status}" ${disabledAttrs}>${label}</a></li>`;
       }).join('');
 
       const bottomHtml = `
@@ -81,21 +86,30 @@ function populatePage(lang) {
     // Create a single preview card element (reused for all hovers)
     createPreviewCard();
 
-    // Attach hover listeners for preview behavior
-    document.querySelectorAll('.phase-bottom a').forEach(a => {
-      a.addEventListener('mouseenter', (e) => {
-        const el = e.currentTarget;
-        const text = el.getAttribute('data-preview-text') || '';
-        const img = el.getAttribute('data-preview-img') || '';
-        showPreview(el, { text, img });
+      // Attach hover listeners for preview behavior and prevent clicks for wip
+      document.querySelectorAll('.phase-bottom a').forEach(a => {
+        const status = a.getAttribute('data-status') || 'released';
+        a.addEventListener('mouseenter', (e) => {
+          const el = e.currentTarget;
+          const text = el.getAttribute('data-preview-text') || '';
+          const img = el.getAttribute('data-preview-img') || '';
+          showPreview(el, { text, img });
+        });
+        a.addEventListener('mousemove', (e) => {
+          movePreview(e);
+        });
+        a.addEventListener('mouseleave', () => {
+          hidePreview();
+        });
+
+        // If it's a WIP item, prevent navigation on click and keep it visibly disabled
+        if (status === 'wip') {
+          a.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            // optionally, we could show a small tooltip/popover here — keep minimal for now
+          });
+        }
       });
-      a.addEventListener('mousemove', (e) => {
-        movePreview(e);
-      });
-      a.addEventListener('mouseleave', () => {
-        hidePreview();
-      });
-    });
 
   addScrollBehavior();
 }
@@ -127,8 +141,9 @@ function createPreviewCard() {
   if (document.querySelector('.preview-card')) return;
   const card = document.createElement('div');
   card.className = 'preview-card';
+  // include a small tag element inside the preview image container so we can show status
   card.innerHTML = `
-    <div class="preview-img"><img src="" alt="preview" /></div>
+    <div class="preview-img"><img src="" alt="preview" /><span class="tag"></span></div>
     <div class="preview-text"></div>
   `;
   document.body.appendChild(card);
@@ -139,8 +154,18 @@ function showPreview(anchorEl, { text = '', img = '' } = {}) {
   if (!card) return;
   const imgEl = card.querySelector('.preview-img img');
   const textEl = card.querySelector('.preview-text');
+  const tagEl = card.querySelector('.preview-img .tag');
   imgEl.src = img;
   textEl.textContent = text;
+  // set tag based on the anchor's data-status
+  const status = (anchorEl.getAttribute('data-status') || 'released').toLowerCase();
+  if (tagEl) {
+    tagEl.textContent = status === 'wip' ? 'WIP' : 'Released';
+    tagEl.className = 'tag ' + (status === 'wip' ? 'wip' : 'released');
+  }
+  // apply a class to the preview card so its background matches the link state
+  card.classList.remove('wip', 'released');
+  card.classList.add(status === 'wip' ? 'wip' : 'released');
   card.style.display = 'block';
   card.style.opacity = '1';
   // Position near the anchor
@@ -165,6 +190,8 @@ function hidePreview() {
   if (!card) return;
   card.style.opacity = '0';
   card.style.display = 'none';
+  // remove state classes to reset styling
+  card.classList.remove('wip', 'released');
 }
 
 // Language switcher (optional)
