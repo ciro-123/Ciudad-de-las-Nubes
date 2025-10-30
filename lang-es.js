@@ -1,6 +1,6 @@
 const langES = {
   mainTitle: "Ciudad de las Nubes",
-  mainDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae leo id mi tempus congue.",
+  mainDesc: " ",
   timeline: [
     { id: "phase1", label: "Leyendas", title: "Leyendas", content: "Bohemundo ha creado para vosotros el Sol. Sólo, frente al Abismo, alejó a las estrellas de nuestra tierra. Julia, Helión, Apopino; vuestro es este nuevo mundo esculpido lejos de la oscuridad abismal.", img: "imgs/etapas/leyenda.png",
       items: [
