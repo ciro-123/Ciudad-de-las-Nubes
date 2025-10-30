@@ -4,7 +4,8 @@ let currentLang = langES; // change to langEN for English
 // Insert dynamic content
 function populatePage(lang) {
   // Main title and description
-  document.getElementById("main-title").textContent = lang.mainTitle;
+  // mainTitle may contain HTML (e.g. <br>); use innerHTML to render it
+  document.getElementById("main-title").innerHTML = lang.mainTitle;
   document.getElementById("main-desc").textContent = lang.mainDesc;
 
   // Horizontal timeline

@@ -23,7 +23,7 @@ section {
 
 .language-toggle .btn {
   background-color: rgba(57, 98, 156);
-  color: #fff;
+  color: #dbdcd7;
   border: none;
   font-weight: 600;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -43,17 +43,47 @@ section {
   background: none;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Luxurious+Roman&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
 #intro h1,
 #intro p.lead {
   position: absolute;
   left: 50%;
-  top: 20%;
+  top: 30%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin: 0 0 0 0;
+  line-height: 7rem;
+  z-index: 10;
+
+  font-family: 'Luxurious Roman', serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  /* Gradient text for moving glare */
+  background: linear-gradient(120deg, #FFD700, #FFA500, #FF4500, #FFD700);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 
+    0 0 5px rgba(255, 215, 0, 0.6),
+    0 0 10px rgba(255, 140, 0, 0.5),
+    0 0 20px rgba(255, 69, 0, 0.4);
+
+  animation: gradientMove 3s linear infinite, fadeInUp 2s ease-out forwards;
+}
+
+#intro h2 {
+  position: absolute;
+  left: 50%;
+  top: 46%;
   transform: translateX(-50%);
   text-align: center;
   margin: 0;
   z-index: 10;
 
-  font-family: 'Cinzel', 'Garamond', serif;
+  font-family: 'Luxurious Roman', serif;
   font-weight: 700;
   letter-spacing: 2px;
 
@@ -221,26 +251,20 @@ section {
 }
 
 .parallax-bg.sky {
-  background-image: url("imgs/Sky.jpg");
+  background-image: url("imgs/cielo.png");
   background-attachment: fixed;
   z-index: 0;
 }
 
 .parallax-bg.cloud1 {
-  background-image: url("imgs/test2.png");
+  background-image: url("imgs/clouds3.png");
   z-index: 1;
-  top: 100px;
 }
 
 .parallax-bg.cloud2 {
-  background-image: url("imgs/test.png");
+  background-image: url("imgs/clouds1fix.png");
   z-index: 2;
-}
-
-.parallax-bg.cloud3 {
-  background-image: url("imgs/test3.png");
-  z-index: 3;
-  top: 200px;
+  top: 300px;
 }
 
 .parallax-container {
@@ -264,6 +288,8 @@ section {
   /* allow wrapper to span the full viewport so each section can use 50vw */
   padding: 4rem 0;
   box-sizing: border-box;
+  /* stacking context so we can layer a top gradient under cards but below the vertical line */
+  z-index: 0;
 }
 
 .timeline-wrapper::before {
@@ -275,6 +301,21 @@ section {
   transform: translateX(-50%);
   width: 4px;
   background-color: rgba(57, 98, 156);
+  /* keep the central vertical line above the gradient and cards so it appears to come out of nothing */
+  z-index: 0;
+}
+
+/* top gradient that fades to transparent so the vertical line appears to emerge from it */
+.timeline-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 220px; /* adjust to taste */
+  background: linear-gradient(to bottom, #f8f9fa 20%, rgba(248,249,250,0.95) 50%, rgba(248,249,250,0) 100%);
+  pointer-events: none;
+  z-index: 1; /* below cards but above page background */
 }
 
 .timeline-section {
@@ -324,6 +365,9 @@ section {
   width: 95%;
   /* occupy nearly the full half-screen column */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  /* ensure cards sit above the top gradient */
+  position: relative;
+  z-index: 2;
 }
 
 .timeline-section.left {
@@ -528,10 +572,9 @@ section {
   .timeline-section.right {
     width: 100%;
     left: 0 !important;
-    text-align: left;.timeline-section {
-}
-
+    text-align: left;
   }
+
 
   .timeline-section::before {
     /* on small screens the section is full-width; center the dot at 50% */
@@ -553,7 +596,7 @@ section {
   height: 20px;
   border-radius: 50%;
   background-color: rgba(57, 98, 156);
-  z-index: 3;
+  z-index: 6;
   /* above the vertical line and cards */
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
 }

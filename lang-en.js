@@ -1,5 +1,10 @@
 const langEN = {
-  mainTitle: "Ciudad de las Nubes",
+  mainTitle: 
+  `<h1>Ciudad
+  <br>
+  <h2>de las</h2>
+  <br>
+  Nubes</h1>`,
   mainDesc: " ",
   timeline: [
     { id: "phase1", label: "Legends", title: "Legends", content: "Bohemundo has created the Sun for you. Alone, facing the Abyss, he drove the stars away from our land. Julia, Helion, Apopino; this new world, carved far from the abysmal darkness, is yours.", img: "imgs/icono.png",
