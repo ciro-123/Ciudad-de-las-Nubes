@@ -195,12 +195,32 @@ function showPreview(anchorEl, { text = '', img = '' } = {}) {
   card.classList.add(status === 'wip' ? 'wip' : 'released');
   card.style.display = 'block';
   card.style.opacity = '1';
-  // Position near the anchor
+  // Position near the anchor but keep the card inside the viewport
   const rect = anchorEl.getBoundingClientRect();
-  const top = rect.top + window.scrollY - 10;
-  const left = rect.right + 10 + window.scrollX;
-  card.style.top = `${top}px`;
-  card.style.left = `${left}px`;
+  // measure after displaying so offsetWidth/Height are available
+  const cw = card.offsetWidth || 260; // fallback to max-width
+  const ch = card.offsetHeight || 120;
+  const padding = 12; // minimal padding from viewport edge
+
+  // desired position: to the right of the anchor
+  let desiredLeft = rect.right + 10 + window.scrollX;
+  // if placing to the right would overflow, try placing to the left of the anchor
+  const maxLeft = window.scrollX + window.innerWidth - cw - padding;
+  const minLeft = window.scrollX + padding;
+  if (desiredLeft > maxLeft) {
+    // place to left of anchor
+    desiredLeft = rect.left + window.scrollX - cw - 10;
+  }
+  // clamp finally
+  desiredLeft = Math.min(Math.max(desiredLeft, minLeft), maxLeft);
+
+  let desiredTop = rect.top + window.scrollY - 10;
+  const maxTop = window.scrollY + window.innerHeight - ch - padding;
+  const minTop = window.scrollY + padding;
+  desiredTop = Math.min(Math.max(desiredTop, minTop), maxTop);
+
+  card.style.top = `${Math.round(desiredTop)}px`;
+  card.style.left = `${Math.round(desiredLeft)}px`;
 }
 
 function movePreview(e) {
@@ -208,8 +228,23 @@ function movePreview(e) {
   if (!card) return;
   const offsetX = 20;
   const offsetY = 10;
-  card.style.top = `${e.clientY + window.scrollY + offsetY}px`;
-  card.style.left = `${e.clientX + window.scrollX + offsetX}px`;
+  const cw = card.offsetWidth || 260;
+  const ch = card.offsetHeight || 120;
+  const padding = 12;
+  const maxLeft = window.scrollX + window.innerWidth - cw - padding;
+  const minLeft = window.scrollX + padding;
+  const maxTop = window.scrollY + window.innerHeight - ch - padding;
+  const minTop = window.scrollY + padding;
+
+  let desiredLeft = e.clientX + window.scrollX + offsetX;
+  let desiredTop = e.clientY + window.scrollY + offsetY;
+  // prefer placing to the right; if it would overflow, shift left
+  if (desiredLeft > maxLeft) desiredLeft = e.clientX + window.scrollX - cw - offsetX;
+  desiredLeft = Math.min(Math.max(desiredLeft, minLeft), maxLeft);
+  desiredTop = Math.min(Math.max(desiredTop, minTop), maxTop);
+
+  card.style.top = `${Math.round(desiredTop)}px`;
+  card.style.left = `${Math.round(desiredLeft)}px`;
 }
 
 function hidePreview() {
