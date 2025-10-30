@@ -266,7 +266,7 @@ section {
   background-image: url("imgs/clouds1fix.png");
   background-size: contain;
   z-index: 2;
-  top: 600px;
+  top: 60vh;
 }
 
 .parallax-container {
