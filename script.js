@@ -44,9 +44,8 @@ function populatePage(lang) {
       // Create markup
       const topHtml = `
         <div class="phase-top">
-          <div class="phase-img">
-            <img src="${phase.img}" alt="${phase.label}" />
-          </div>
+          <!-- insert an empty placeholder block for now; keep original image path in data-img for future use and for previews -->
+          <div class="phase-img empty" data-img="${phase.img}" aria-hidden="true"></div>
           <div class="phase-text">
             <h2>${phase.title}</h2>
             <p>${phase.content}</p>
@@ -82,6 +81,34 @@ function populatePage(lang) {
       section.innerHTML = `<div class="phase-card">${topHtml}${bottomHtml}</div>`;
       wrapper.appendChild(section);
     });
+
+    // Create / position timeline dots as real elements inside the wrapper so
+    // they align exactly at the wrapper's center (left:50%). This avoids
+    // subpixel rounding differences when relying on section-relative pseudo
+    // elements.
+    function placeTimelineDots() {
+      // remove previous dots
+      document.querySelectorAll('.timeline-dot').forEach(d => d.remove());
+      const sections = wrapper.querySelectorAll('.timeline-section');
+      sections.forEach(sec => {
+        const dot = document.createElement('span');
+        dot.className = 'timeline-dot';
+        // section.offsetTop is relative to wrapper because sections are direct
+        // children of wrapper and wrapper is positioned
+        const top = sec.offsetTop + (sec.offsetHeight / 2);
+        dot.style.top = `${Math.round(top)}px`;
+        wrapper.appendChild(dot);
+      });
+    }
+
+    // place dots now and on resize (recalculate positions)
+    placeTimelineDots();
+    // avoid adding multiple resize handlers if populatePage runs more than once
+    if (window._timelineResizeHandler) {
+      window.removeEventListener('resize', window._timelineResizeHandler);
+    }
+    window._timelineResizeHandler = () => window.requestAnimationFrame(placeTimelineDots);
+    window.addEventListener('resize', window._timelineResizeHandler);
 
     // Create a single preview card element (reused for all hovers)
     createPreviewCard();

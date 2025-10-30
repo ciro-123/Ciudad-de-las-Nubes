@@ -1,13 +1,11 @@
 /* ---------- GLOBAL STYLES ---------- */
 body {
   scroll-behavior: smooth;
-  background: linear-gradient(
-    to bottom,
-    #f8f9fa 0%,
-    #f8f9fa 50%,
-    #000000 100%
-  );
-  cursor: url("imgs/sun.png") 16 16, auto;
+  background: linear-gradient(to bottom,
+      #f8f9fa 0%,
+      #f8f9fa 50%,
+      #000000 100%);
+  cursor: url("imgs/cursor.png") 16 16, auto;
 }
 
 section {
@@ -19,7 +17,8 @@ section {
 
 /* ---------- LANGUAGE TOGGLE BUTTONS ---------- */
 .language-toggle {
-  z-index: 9999; /* ensures it's always above clouds and parallax */
+  z-index: 9999;
+  /* ensures it's always above clouds and parallax */
 }
 
 .language-toggle .btn {
@@ -46,24 +45,55 @@ section {
 
 #intro h1,
 #intro p.lead {
-  position: absolute; /* absolute so we can place it at the very top */
-  left: 50%;          /* center horizontally */
-  transform: translateX(-50%); /* adjust center perfectly */
-  color: #FFD700;     /* gold */
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
   text-align: center;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-  z-index: 10;        /* above parallax layers */
   margin: 0;
+  z-index: 10;
+
+  font-family: 'Cinzel', 'Garamond', serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  /* Gradient text for moving glare */
+  background: linear-gradient(120deg, #FFD700, #FFA500, #FF4500, #FFD700);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 
+    0 0 5px rgba(255, 215, 0, 0.6),
+    0 0 10px rgba(255, 140, 0, 0.5),
+    0 0 20px rgba(255, 69, 0, 0.4);
+
+  animation: gradientMove 3s linear infinite, fadeInUp 2s ease-out forwards;
 }
 
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateX(-50%) translateY(50px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+
 #intro h1 {
-  top: 20px;          /* distance from top of viewport */
+  top: 20px;
+  /* distance from top of viewport */
   font-size: 4rem;
   font-weight: 800;
 }
 
 #intro p.lead {
-  top: 100px;         /* below title */
+  top: 100px;
+  /* below title */
   font-size: 1.8rem;
   font-weight: 500;
   text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
@@ -72,7 +102,8 @@ section {
 /* Keep horizontal timeline below */
 .timeline-horizontal {
   position: relative;
-  z-index: 10; /* above parallax */
+  z-index: 10;
+  /* above parallax */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,17 +112,18 @@ section {
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  margin-top: 220px; /* leave space below title & subtitle */
+  margin-top: 220px;
+  /* leave space below title & subtitle */
 }
 
 
-/* Keep horizontal timeline below */
+/* ---------- HORIZONTAL TIMELINE ---------- */
 .timeline-horizontal {
   position: relative;
-  z-index: 10; /* above parallax */
+  z-index: 10;                  /* above parallax */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;   /* nodes start from left */
+  align-items: flex-start;       /* buttons pinned at top */
   overflow-x: auto;
   padding: 2rem 1rem;
   background-color: rgba(255, 255, 255, 0.85);
@@ -100,6 +132,7 @@ section {
   margin-top: 2rem;
 }
 
+/* timeline node image (if needed) */
 .timeline-img {
   width: 50px;
   height: 50px;
@@ -107,11 +140,17 @@ section {
   border-radius: 50%;
 }
 
+/* ---------- TIMELINE NODE ---------- */
 .timeline-node {
+  display: flex;
+  flex-direction: column;      /* button above text */
+  align-items: center;         /* center horizontally */
   margin: 0 1rem;
   text-align: center;
+  min-width: 80px;             /* ensures consistent spacing */
 }
 
+/* timeline button stays pinned */
 .timeline-node button {
   width: 55px;
   height: 55px;
@@ -121,7 +160,25 @@ section {
   color: #fff;
   font-weight: bold;
   transition: 0.3s;
+  flex-shrink: 0;              /* never shrink */
+  margin-bottom: 0.5rem;       /* space between button and text */
+  display: block;
 }
+
+/* timeline text below button wraps without moving button */
+.timeline-node p {
+  margin: 0;
+  margin-top: 0.25rem;
+  font-weight: 600;
+  color: #394E9C;
+  text-align: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100px; /* prevents excessive width */
+  line-height: 1.2;
+}
+
 
 .timeline-node button:disabled {
   width: 55px;
@@ -161,20 +218,20 @@ section {
   z-index: 0;
 }
 
-.parallax-bg.cloud1 { 
-  background-image: url("imgs/test2.png"); 
-  z-index: 1; 
+.parallax-bg.cloud1 {
+  background-image: url("imgs/test2.png");
+  z-index: 1;
   top: 100px;
 }
 
-.parallax-bg.cloud2 { 
-  background-image: url("imgs/test.png"); 
-  z-index: 2; 
+.parallax-bg.cloud2 {
+  background-image: url("imgs/test.png");
+  z-index: 2;
 }
 
-.parallax-bg.cloud3 { 
-  background-image: url("imgs/test3.png"); 
-  z-index: 3; 
+.parallax-bg.cloud3 {
+  background-image: url("imgs/test3.png");
+  z-index: 3;
   top: 200px;
 }
 
@@ -186,7 +243,8 @@ section {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-  z-index: 0; /* all parallax behind content */
+  z-index: 0;
+  /* all parallax behind content */
 }
 
 /* ---------- VERTICAL TIMELINE ---------- */
@@ -194,7 +252,8 @@ section {
   position: relative;
   margin: 0 auto;
   width: 100%;
-  max-width: none; /* allow wrapper to span the full viewport so each section can use 50vw */
+  max-width: none;
+  /* allow wrapper to span the full viewport so each section can use 50vw */
   padding: 4rem 0;
   box-sizing: border-box;
 }
@@ -212,12 +271,14 @@ section {
 
 .timeline-section {
   position: relative;
-  width: 50vw; /* use viewport fraction so it truly occupies half the screen */
+  width: 50vw;
+  /* use viewport fraction so it truly occupies half the screen */
   padding: 2rem;
   /* make sections behave as flexible columns so cards can align toward center line */
   display: flex;
   align-items: center;
-  min-height: 70vh; /* slightly larger to give the card vertical room */
+  min-height: 70vh;
+  /* slightly larger to give the card vertical room */
   box-sizing: border-box;
 }
 
@@ -230,67 +291,74 @@ section {
 }
 
 .timeline-section::before {
-  content: "";
-  position: absolute;
-  top: 40px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: rgba(57, 98, 156);
-  z-index: 1;
+  /* hide legacy pseudo-element dots — we render real .timeline-dot elements
+                                                                                                                                                                                                                                                                                                                 from JS to ensure precise centering and avoid duplicates */
+  display: none;
 }
 
 .timeline-section.left {
-  left: 0;
+  /* place the section in the left column and align its content to the right
+                                                                                                                                                                                                                                                                                                                          so the card sits next to the central timeline */
+  margin-left: 0;
   text-align: right;
 }
 
+/* keep the legacy pseudo hidden */
 .timeline-section.left::before {
-  right: -10px;
-}
-
-.timeline-section.right {
-  left: 50%;
-}
-
-.timeline-section.right::before {
-  left: -10px;
-}
-
-.timeline-content h2 {
-  color: rgba(57, 98, 156);
+  display: none;
 }
 
 /* ---------- PHASE CARD (image + text + links with preview) ---------- */
 .phase-card {
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
   padding: 1rem;
-  width: 95%; /* occupy nearly the full half-screen column */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  width: 95%;
+  /* occupy nearly the full half-screen column */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-.timeline-section.left { justify-content: flex-end; }
-.timeline-section.right { justify-content: flex-start; }
+.timeline-section.left {
+  justify-content: flex-end;
+}
+
+.timeline-section.right {
+  justify-content: flex-start;
+}
+
+/* push right-side sections into the right half */
+.timeline-section.right {
+  margin-left: 50%;
+}
 
 .phase-top {
   display: flex;
   align-items: stretch;
   gap: 1rem;
-  min-height: 240px; /* larger so images and titles fill the half better */
+  min-height: 240px;
+  /* larger so images and titles fill the half better */
 }
 
 .phase-img {
-  width: 46%; /* left portion of the top area */
+  width: 46%;
+  /* left portion of the top area */
   overflow: hidden;
   min-height: 200px;
 }
 
 .phase-img img {
-  width: 100%;
+  width: 46%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Placeholder variant: keeps the same space as an image but shows an empty area
+ so images can be added later without changing layout. */
+.phase-img.empty {
+  width: 0%;
+  min-height: 200px;
+  box-sizing: border-box;
 }
 
 .phase-text {
@@ -300,7 +368,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: rgba(255,255,255,0.98);
+  background: rgba(255, 255, 255, 0.98);
   border-radius: 6px;
 }
 
@@ -313,7 +381,7 @@ section {
 
 .phase-bottom {
   margin-top: 1rem;
-  background: rgba(255,255,255,0.98);
+  background: rgba(255, 255, 255, 0.98);
   padding: 1rem;
   border-radius: 6px;
 }
@@ -323,7 +391,7 @@ section {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column; /* changed to column as requested */
+  flex-direction: column;
   gap: 0.5rem;
   align-items: flex-start;
 }
@@ -356,7 +424,7 @@ section {
   max-width: 260px;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   z-index: 99999;
   opacity: 0;
@@ -379,10 +447,12 @@ section {
 
 /* Tag that shows status (released / wip) on the preview image */
 .preview-card .preview-img {
-  position: relative; /* ancestor for absolute tag */
+  position: relative;
+  /* ancestor for absolute tag */
 }
+
 /* Hide the tag visually while keeping it in the DOM for JS to update.
-   The tag's content and classes remain available to scripts, but it's not shown. */
+                                                                             The tag's content and classes remain available to scripts, but it's not shown. */
 .preview-card .preview-img .tag {
   display: none !important;
   visibility: hidden !important;
@@ -395,8 +465,10 @@ section {
 .phase-bottom ul li a.disabled {
   cursor: not-allowed;
   opacity: 0.78;
-  background-color: gray; /* make WIP links visually gray */
-  color: #fff; /* ensure text remains readable */
+  background-color: gray;
+  /* make WIP links visually gray */
+  color: #fff;
+  /* ensure text remains readable */
 }
 
 .phase-bottom ul li a.disabled:hover {
@@ -412,12 +484,15 @@ section {
 
 /* Make preview card background match the link state: released -> blue, wip -> gray */
 .preview-card.released {
-  background: rgba(57, 98, 156); /* same base blue as links */
+  background: rgba(57, 98, 156);
+  /* same base blue as links */
   color: #fff;
 }
+
 .preview-card.released .preview-text {
   color: #fff;
 }
+
 .preview-card.released .preview-img .tag {
   /* use a stronger blue for the tag so it remains distinct */
   background: #0b5ed7;
@@ -427,15 +502,19 @@ section {
   background: gray;
   color: #fff;
 }
+
 .preview-card.wip .preview-text {
   color: #fff;
 }
+
 .preview-card.wip .preview-img .tag {
-  background: #6c757d; /* bootstrap secondary-ish */
+  background: #6c757d;
+  /* bootstrap secondary-ish */
 }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
+
   .timeline-section,
   .timeline-section.left,
   .timeline-section.right {
@@ -445,10 +524,33 @@ section {
   }
 
   .timeline-section::before {
-    left: calc(50% - 10px);
+    /* on small screens the section is full-width; center the dot at 50% */
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .timeline-wrapper::before {
     left: 50%;
+  }
+}
+
+/* Real, script-driven dots (positioned inside .timeline-wrapper) */
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(57, 98, 156);
+  z-index: 3;
+  /* above the vertical line and cards */
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
+  .timeline-dot {
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
