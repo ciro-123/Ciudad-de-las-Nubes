@@ -156,13 +156,21 @@ section {
   height: 55px;
   border-radius: 50%;
   border: none;
-  background-color: rgba(57, 98, 156);
+  background-color: rgba(57, 98, 156, 0);
   color: #fff;
   font-weight: bold;
   transition: 0.3s;
   flex-shrink: 0;              /* never shrink */
   margin-bottom: 0.5rem;       /* space between button and text */
   display: block;
+}
+
+.timeline-node img {
+  width: 55px;
+  height: 55px;
+  margin-left: -0.3rem;
+  border-radius: 50%;
+  margin-bottom: 0.3rem;
 }
 
 /* timeline text below button wraps without moving button */
@@ -175,7 +183,7 @@ section {
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
-  max-width: 100px; /* prevents excessive width */
+  max-width: 85px; /* prevents excessive width */
   line-height: 1.2;
 }
 
@@ -194,7 +202,7 @@ section {
 
 
 .timeline-node button:hover {
-  background-color: #0b5ed7;
+  background-color: #0b5dd700;
   transform: scale(1.1);
 }
 
