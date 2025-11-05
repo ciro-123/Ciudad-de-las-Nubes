@@ -27,7 +27,7 @@ const langES = {
         { label: "Verrevelas", href: "#", previewText: " ", previewImg: "imgs/wip.png", state: "wip"}
       ]
     },
-    { id: "phase5", label: "Liberación", title: "Liberación", content: "La Ciudad de las Nubes ha caído. Julia, liberada de su prisión, ha iniciado la conquista de las antiguas tierras de su difunto hermano. La humanidad respira de nuevo, liberada una vez más de la maldición del Alma Doblegada impuesta por los crueles cielos.", img: "imgs/icono.png",
+    { id: "phase5", label: "Liberación", title: "Liberación", content: "La Ciudad de las Nubes ha caído. Julia, liberada de su prisión, se ha lanzado a la conquista de las antiguas tierras de su difunto hermano. La humanidad respira de nuevo, liberada una vez más de la maldición del Alma Doblegada impuesta por los crueles cielos.", img: "imgs/icono.png",
       items: [
         { label: "Night of Wolves", href: "https://store.steampowered.com/app/2393490/Night_of_Wolves", previewText: " ", previewImg: "imgs/portadas/now.jpg", state: "released"},
       ]
