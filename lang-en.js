@@ -27,7 +27,7 @@ const langEN = {
         { label: "Verrevelas", href: "#", previewText: " ", previewImg: "imgs/wip.png", state: "wip" }
       ]
     },
-    { id: "phase5", label: "Liberation", title: "Liberation", content: "The Ciudad de las Nubes has fallen. Julia, freed from her prison, has begun the conquest of her late brother’s ancient lands. Humanity breathes again, once more liberated from the curse of the Bent Soul imposed by the cruel heavens.", img: "imgs/icono.png",
+    { id: "phase5", label: "Liberation", title: "Liberation", content: "The Ciudad de las Nubes has fallen. Julia, freed from her prison, has begun the conquest of her late brother’s ancient lands. Humanity breathes again, once more liberated from the curse of The Shackled Soul imposed by the cruel heavens.", img: "imgs/icono.png",
       items: [
         { label: "Night of Wolves", href: "https://store.steampowered.com/app/2393490/Night_of_Wolves", previewText: " ", previewImg: "imgs/portadas/now.jpg", state: "released" }
       ]
