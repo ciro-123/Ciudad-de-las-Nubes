@@ -45,8 +45,9 @@ function populatePage(lang) {
       // Create markup
       const topHtml = `
         <div class="phase-top">
-          <!-- insert an empty placeholder block for now; keep original image path in data-img for future use and for previews -->
-          <div class="phase-img empty" data-img="${phase.img}" aria-hidden="true"></div>
+          <div class="phase-img" data-img="${phase.img}" aria-hidden="false">
+            <img src="${phase.img}" alt="${phase.label}" />
+          </div>
           <div class="phase-text">
             <h2>${phase.title}</h2>
             <p>${phase.content}</p>

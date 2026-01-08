@@ -342,14 +342,11 @@ section {
 }
 
 .timeline-section::before {
-  /* hide legacy pseudo-element dots — we render real .timeline-dot elements
-                                                                                                                                                                                                                                                                                                                 from JS to ensure precise centering and avoid duplicates */
-  display: none;
+    display: none;
 }
 
 .timeline-section.left {
-  /* place the section in the left column and align its content to the right
-                                                                                                                                                                                                                                                                                                                          so the card sits next to the central timeline */
+  
   margin-left: 0;
   text-align: right;
 }
@@ -401,10 +398,11 @@ section {
 }
 
 .phase-img img {
-  width: 46%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  border-radius: 6px;
 }
 
 /* Placeholder variant: keeps the same space as an image but shows an empty area
