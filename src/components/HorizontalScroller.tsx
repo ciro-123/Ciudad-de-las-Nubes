@@ -212,6 +212,7 @@ export default function HorizontalScroller() {
       textPrimary: lerpCSSColor(from.textPrimary, to.textPrimary, t),
       textSecondary: lerpCSSColor(from.textSecondary, to.textSecondary, t),
       contentBg: lerpRGBA(from.contentBg, to.contentBg, t),
+      cardBorder: lerpCSSColor(from.cardBorder, to.cardBorder, t),
       particleColor: lerpRGBA(from.particleColor, to.particleColor, t),
       skyColor: lerpColor(from.skyColor, to.skyColor, t),
       cloudColor: lerpColor(from.cloudColor, to.cloudColor, t),
@@ -231,6 +232,7 @@ export default function HorizontalScroller() {
         '--cdln-text-primary': interpolatedColors.textPrimary,
         '--cdln-text-secondary': interpolatedColors.textSecondary,
         '--cdln-content-bg': interpolatedColors.contentBg,
+        '--cdln-card-border': interpolatedColors.cardBorder,
         '--cdln-particle-color': interpolatedColors.particleColor,
       } as React.CSSProperties),
     [interpolatedColors]

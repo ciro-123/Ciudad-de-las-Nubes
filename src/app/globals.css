@@ -189,21 +189,53 @@ a:hover {
   max-width: 680px;
   width: 100%;
   text-align: center;
-  padding: 48px 40px;
+  padding: 0;
+  overflow: hidden;
   background: var(--cdln-content-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: none;
   border-radius: var(--cdln-radius);
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s ease, transform 0.7s ease,
-              background 0.6s ease, border-color 0.6s ease;
+              background 0.6s ease;
 }
 
 .etapa-panel__content--visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ---------- Etapa Panel Header Image ---------- */
+.etapa-panel__image-container {
+  width: 100%;
+  height: 390px;
+  position: relative;
+  overflow: hidden;
+  /* Curved bottom fade mask: center fades at ~55% height, sides extend down to 100% */
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='f' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23000' stop-opacity='1'/%3E%3Cstop offset='25%25' stop-color='%23000' stop-opacity='1'/%3E%3Cstop offset='65%25' stop-color='%23000' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M 0,0 L 100,0 L 100,100 Q 50,55 0,100 Z' fill='url(%23f)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='f' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23000' stop-opacity='1'/%3E%3Cstop offset='25%25' stop-color='%23000' stop-opacity='1'/%3E%3Cstop offset='65%25' stop-color='%23000' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23000' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M 0,0 L 100,0 L 100,100 Q 50,55 0,100 Z' fill='url(%23f)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.etapa-panel__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  opacity: 1;
+  display: block;
+}
+
+.etapa-panel__text-container {
+  padding: 0 40px 48px;
+  margin-top: -64px;
+  position: relative;
+  z-index: 2;
 }
 
 .etapa-panel__number {
@@ -214,7 +246,7 @@ a:hover {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--cdln-accent);
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   opacity: 0.6;
   transition: color var(--cdln-transition-color);
 }
@@ -222,7 +254,7 @@ a:hover {
 .etapa-panel__title {
   font-size: clamp(2.4rem, 6vw, 4.2rem);
   font-weight: 700;
-  margin-bottom: 28px;
+  margin-bottom: 12px;
   letter-spacing: 0.04em;
   color: var(--cdln-text-primary);
   transition: color var(--cdln-transition-color);
@@ -232,6 +264,8 @@ a:hover {
   font-size: clamp(1rem, 2vw, 1.15rem);
   line-height: 1.85;
   margin: 0 auto 32px;
+  text-align: justify;
+  text-align-last: center;
   color: var(--cdln-text-secondary);
   transition: color var(--cdln-transition-color);
 }
@@ -240,7 +274,7 @@ a:hover {
   width: 60px;
   height: 1px;
   background: var(--cdln-accent);
-  margin: 0 auto 28px;
+  margin: 0 auto 16px;
   opacity: 0.4;
   transition: background var(--cdln-transition-color);
 }
@@ -832,6 +866,15 @@ a:hover {
 
   .etapa-panel__content {
     max-width: 100%;
+  }
+
+  .etapa-panel__image-container {
+    height: 280px;
+  }
+
+  .etapa-panel__text-container {
+    padding: 0 20px 32px;
+    margin-top: -36px;
   }
 
   .timeline-nav {
