@@ -14,6 +14,12 @@ export interface Translations {
   languageToggle: string;
   switchToLanguage: string;
   visitGame: string;
+  menuGames: string;
+  menuComics: string;
+  comingSoon: string;
+  enterTimeline: string;
+  landingTitle: string;
+  landingSubtitle: string;
   etapas: EtapaContent[];
 }
 
@@ -26,6 +32,12 @@ const translations: Record<Language, Translations> = {
     languageToggle: 'Cambiar idioma',
     switchToLanguage: 'English',
     visitGame: 'Ver juego',
+    menuGames: 'Juegos',
+    menuComics: 'Cómics',
+    comingSoon: 'Próximamente...',
+    enterTimeline: 'Explorar la Cronología',
+    landingTitle: 'Ciudad de las Nubes',
+    landingSubtitle: 'El universo de Gooblin Studio',
     etapas: [
       {
         title: 'Leyendas',
@@ -67,6 +79,12 @@ const translations: Record<Language, Translations> = {
     languageToggle: 'Switch language',
     switchToLanguage: 'Español',
     visitGame: 'View game',
+    menuGames: 'Games',
+    menuComics: 'Comics',
+    comingSoon: 'Coming soon...',
+    enterTimeline: 'Explore the Timeline',
+    landingTitle: 'Ciudad de las Nubes',
+    landingSubtitle: 'The Gooblin Studio Universe',
     etapas: [
       {
         title: 'Legends',

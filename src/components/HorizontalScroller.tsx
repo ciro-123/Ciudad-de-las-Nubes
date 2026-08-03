@@ -13,6 +13,7 @@ import ParticleOverlay from './ParticleOverlay';
 import EtapaPanel from './EtapaPanel';
 import TimelineNav from './TimelineNav';
 import LanguageSwitcher from './LanguageSwitcher';
+import SideMenu from './SideMenu';
 
 const ETAPA_COUNT = 7;
 /** Dead-zone fraction of panel width where color stays locked to center */
@@ -250,13 +251,8 @@ export default function HorizontalScroller() {
       {/* Particle motes overlay */}
       <ParticleOverlay color={interpolatedColors.particleColor} />
 
-      {/* Logo */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/logo.svg"
-        alt="Gooblin Studio"
-        className="site-logo"
-      />
+      {/* Hamburger sidebar menu */}
+      <SideMenu />
 
       {/* Language toggle */}
       <LanguageSwitcher />
