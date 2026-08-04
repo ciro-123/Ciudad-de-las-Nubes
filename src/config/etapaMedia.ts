@@ -43,25 +43,8 @@ const etapaMedia: EtapaMedia[] = [
   // 5 — Guerra Total
   { games: [], comics: [] },
 
-  // 6 — Torres Celestiales (placeholders for scroll testing)
-  {
-    games: [
-      { label: 'Siege of Adrahan', url: '#' },
-      { label: 'The Last Tower', url: '#' },
-      { label: 'Celestial Clash', url: '#' },
-      { label: 'Bohemundo\'s Trial', url: '#' },
-      { label: 'Skyborn Arena', url: '#' },
-      { label: 'Angels & Mortals', url: '#' },
-      { label: 'Fractured Heavens', url: '#' },
-      { label: 'Dawn of Adrahan', url: '#' },
-    ],
-    comics: [
-      { label: 'The Council — Vol. 1', url: '#' },
-      { label: 'The Council — Vol. 2', url: '#' },
-      { label: 'Shattered Sky', url: '#' },
-      { label: 'United Destiny', url: '#' },
-    ],
-  },
+  // 6 — Torres Celestiales
+  { games: [], comics: [] },
 ];
 
 export default etapaMedia;

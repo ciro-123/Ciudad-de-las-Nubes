@@ -142,7 +142,6 @@ export default function EtapaPanel({ index, isActive }: EtapaPanelProps) {
                         rel={game.url !== '#' ? 'noopener noreferrer' : undefined}
                         className="etapa-panel__media-item"
                       >
-                        <span className="etapa-panel__media-item-icon" aria-hidden="true">🎮</span>
                         <span className="etapa-panel__media-item-label">{game.label}</span>
                         <span className="etapa-panel__media-item-arrow" aria-hidden="true">→</span>
                       </a>
@@ -167,7 +166,6 @@ export default function EtapaPanel({ index, isActive }: EtapaPanelProps) {
                         rel={comic.url !== '#' ? 'noopener noreferrer' : undefined}
                         className="etapa-panel__media-item"
                       >
-                        <span className="etapa-panel__media-item-icon" aria-hidden="true">📖</span>
                         <span className="etapa-panel__media-item-label">{comic.label}</span>
                         <span className="etapa-panel__media-item-arrow" aria-hidden="true">→</span>
                       </a>
