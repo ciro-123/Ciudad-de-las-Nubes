@@ -38,17 +38,19 @@ export default function VantaBackground({
 
     async function init() {
       try {
-        // Dynamic imports to avoid SSR issues
-        const [THREE, CLOUDS] = await Promise.all([
-          import('three'),
-          import('vanta/dist/vanta.clouds.min'),
-        ]);
+        // Dynamic imports to avoid SSR issues. Be tolerant of different
+        // module shapes (some bundlers expose a `.default` export).
+        const THREEmod = await import('three');
+        const CLOUDSmod = await import('vanta/dist/vanta.clouds.min');
+
+        const THREElib = (THREEmod as any).default || THREEmod;
+        const CLOUDSfn = (CLOUDSmod as any).default || CLOUDSmod;
 
         if (cancelled || !containerRef.current) return;
 
-        effectRef.current = CLOUDS.default({
+        effectRef.current = CLOUDSfn({
           el: containerRef.current,
-          THREE: THREE,
+          THREE: THREElib,
           mouseControls: false,
           touchControls: false,
           gyroControls: false,

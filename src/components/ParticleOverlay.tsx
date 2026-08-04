@@ -50,10 +50,15 @@ export default function ParticleOverlay({ color }: ParticleOverlayProps) {
     // Canvas sizing
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
+      // Reset transforms before scaling to avoid cumulative scale
+      // when the resize handler runs multiple times.
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
       canvas.style.width = `${window.innerWidth}px`;
       canvas.style.height = `${window.innerHeight}px`;
+      if (typeof ctx.setTransform === 'function') {
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+      }
       ctx.scale(dpr, dpr);
     };
     resize();
