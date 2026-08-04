@@ -2,6 +2,7 @@
 
 import { LanguageProvider } from '@/i18n/LanguageContext';
 import HorizontalScroller from '@/components/HorizontalScroller';
+import ContactShortcut from '@/components/ContactShortcut';
 
 /**
  * Main page — assembles the entire Ciudad de las Nubes experience.
@@ -12,6 +13,7 @@ export default function Home() {
     <LanguageProvider>
       <main>
         <HorizontalScroller />
+        <ContactShortcut />
       </main>
     </LanguageProvider>
   );

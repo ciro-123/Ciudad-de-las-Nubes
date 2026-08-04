@@ -22,6 +22,8 @@ export interface Translations {
   enterTimeline: string;
   landingTitle: string;
   landingSubtitle: string;
+  copyEmailAria: string;
+  copiedClipboard: string;
   etapas: EtapaContent[];
 }
 
@@ -42,6 +44,8 @@ const translations: Record<Language, Translations> = {
     enterTimeline: 'Explorar la Cronología',
     landingTitle: 'Ciudad de las Nubes',
     landingSubtitle: 'El universo de Gooblin Studio',
+    copyEmailAria: 'Copiar correo al portapapeles',
+    copiedClipboard: 'Copiado en el portapapeles',
     etapas: [
       {
         title: 'Leyendas',
@@ -91,6 +95,8 @@ const translations: Record<Language, Translations> = {
     enterTimeline: 'Explore the Timeline',
     landingTitle: 'Ciudad de las Nubes',
     landingSubtitle: 'The Gooblin Studio Universe',
+    copyEmailAria: 'Copy email to clipboard',
+    copiedClipboard: 'Copied to clipboard',
     etapas: [
       {
         title: 'Legends',

@@ -606,6 +606,79 @@ a:hover {
   color: var(--cdln-accent);
 }
 
+.contact-shortcut {
+  position: fixed;
+  right: 28px;
+  bottom: 24px;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--cdln-bg-overlay);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05);
+}
+
+.contact-shortcut__button,
+.contact-shortcut__link {
+  border: none;
+  background: transparent;
+  color: var(--cdln-text-primary);
+  font-family: var(--cdln-font-ui);
+  font-size: 13px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: background var(--cdln-transition-fast),
+              color var(--cdln-transition-fast),
+              transform var(--cdln-transition-fast);
+}
+
+.contact-shortcut__button:hover,
+.contact-shortcut__link:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--cdln-accent);
+}
+
+.contact-shortcut__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-shortcut__email {
+  font-variant-ligatures: none;
+}
+
+.contact-shortcut__toast {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 12px);
+  transform: translateX(4px);
+  padding: 8px 12px;
+  background: var(--cdln-text-primary);
+  color: var(--cdln-bg-base);
+  font-family: var(--cdln-font-ui);
+  font-size: 12px;
+  border-radius: var(--cdln-radius);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--cdln-transition-fast),
+              transform var(--cdln-transition-fast);
+  white-space: nowrap;
+}
+
+.contact-shortcut__toast--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* ---------- Hamburger Button ---------- */
 .hamburger-btn {
   position: fixed;
