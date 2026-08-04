@@ -51,15 +51,18 @@ function ContactShortcut() {
       >
         <span className="contact-shortcut__email">{EMAIL}</span>
       </button>
+
       <a
-        className="contact-shortcut__link"
+        className="contact-shortcut__social"
         href={X_URL}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Gooblin Studio X"
       >
-        X
+        <span className="contact-shortcut__social-logo">X</span>
+        <span className="contact-shortcut__social-label">Gooblin Studio</span>
       </a>
+
       <div
         className={`contact-shortcut__toast ${copied ? 'contact-shortcut__toast--visible' : ''}`}
       >

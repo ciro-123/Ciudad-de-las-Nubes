@@ -612,19 +612,20 @@ a:hover {
   bottom: 24px;
   z-index: 120;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   gap: 10px;
-  padding: 10px 14px;
+  padding: 14px;
   background: var(--cdln-bg-overlay);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 999px;
+  border-radius: 24px;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05);
 }
 
 .contact-shortcut__button,
-.contact-shortcut__link {
+.contact-shortcut__social {
   border: none;
   background: transparent;
   color: var(--cdln-text-primary);
@@ -633,7 +634,7 @@ a:hover {
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 10px 14px;
   border-radius: 999px;
   transition: background var(--cdln-transition-fast),
               color var(--cdln-transition-fast),
@@ -641,12 +642,13 @@ a:hover {
 }
 
 .contact-shortcut__button:hover,
-.contact-shortcut__link:hover {
+.contact-shortcut__social:hover {
   background: rgba(255, 255, 255, 0.9);
   color: var(--cdln-accent);
 }
 
 .contact-shortcut__button {
+  width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -654,6 +656,38 @@ a:hover {
 
 .contact-shortcut__email {
   font-variant-ligatures: none;
+}
+
+.contact-shortcut__social {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.contact-shortcut__social-logo {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cdln-accent);
+  color: var(--cdln-bg-base);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.contact-shortcut__social-label {
+  font-size: 11px;
+  color: var(--cdln-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .contact-shortcut__toast {
