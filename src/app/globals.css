@@ -284,21 +284,18 @@ a:hover {
   --drawer-width: 320px;
   position: relative;
   width: 100%;
-  display: flex;
-  align-items: stretch;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
-.etapa-panel__content-inner--open {
-  transform: translateX(calc(-1 * var(--drawer-width)));
+  overflow: hidden;
 }
 
 .etapa-panel__main {
-  flex: 1 1 auto;
   position: relative;
   width: 100%;
   overflow: hidden;
+  transition: padding-right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.etapa-panel__content-inner--open .etapa-panel__main {
+  padding-right: calc(var(--drawer-width) + 24px);
 }
 
 .etapa-panel__drawer {
@@ -315,13 +312,17 @@ a:hover {
   -webkit-backdrop-filter: blur(20px);
   border-left: 1px solid rgba(0, 0, 0, 0.08);
   transform: translateX(100%);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
   z-index: 3;
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
 }
 
 .etapa-panel__drawer--open {
   transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .etapa-panel__drawer-inner {
@@ -1054,6 +1055,10 @@ a:hover {
 
   .etapa-panel__content-inner {
     --drawer-width: min(82vw, 280px);
+  }
+
+  .etapa-panel__content-inner--open .etapa-panel__main {
+    padding-right: calc(var(--drawer-width) + 12px);
   }
 
   .etapa-panel__drawer {
