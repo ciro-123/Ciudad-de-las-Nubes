@@ -120,7 +120,8 @@ const translations: Record<Language, Translations> = {
       },
       {
         title: 'Celestial Towers',
-        body: 'Beneath the shadow of the fractured sky, angels and humans were forgiven. United by the same fate, they must hold up the heavens with strength; with the same strength with which Bohemund holds the Sun; with the same strength with which Helion holds the Moon above our heads.'
+        body: 'Beneath the shadow of the fractured sky, angels and humans were forgiven. United by the same fate, they must hold up the heavens with strength; with the same strength with which Bohemund holds the Sun; with the same strength with which Helion holds the Moon above our heads.',
+      },
     ],
   },
 };
