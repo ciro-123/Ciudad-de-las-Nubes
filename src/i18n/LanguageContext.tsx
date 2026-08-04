@@ -16,17 +16,17 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('es');
-
-  useEffect(() => {
-    const saved = localStorage.getItem('cdln-lang') as Language | null;
-    if (saved && (saved === 'es' || saved === 'en')) {
-      setLanguage(saved);
+  const [language, setLanguage] = useState<Language>(() => {
+    if (typeof window === 'undefined') {
+      return 'es';
     }
-  }, []);
+
+    const saved = window.localStorage.getItem('cdln-lang') as Language | null;
+    return saved && (saved === 'es' || saved === 'en') ? saved : 'es';
+  });
 
   useEffect(() => {
-    localStorage.setItem('cdln-lang', language);
+    window.localStorage.setItem('cdln-lang', language);
     document.documentElement.lang = language;
   }, [language]);
 

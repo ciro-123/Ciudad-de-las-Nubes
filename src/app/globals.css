@@ -279,33 +279,71 @@ a:hover {
   transition: background var(--cdln-transition-color);
 }
 
-/* ---------- Etapa Slider (front ↔ back) ---------- */
-.etapa-panel__slider {
+/* ---------- Etapa Drawer (slide-out media menu) ---------- */
+.etapa-panel__content-inner {
+  --drawer-width: 320px;
+  position: relative;
+  width: 100%;
   display: flex;
-  width: 200%;
-  height: 100%;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: stretch;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
-.etapa-panel__slider--flipped {
-  transform: translateX(-50%);
+.etapa-panel__content-inner--open {
+  transform: translateX(calc(-1 * var(--drawer-width)));
 }
 
-.etapa-panel__front {
-  flex: 0 0 50%;
-  width: 50%;
+.etapa-panel__main {
+  flex: 1 1 auto;
   position: relative;
+  width: 100%;
   overflow: hidden;
 }
 
-.etapa-panel__back {
-  flex: 0 0 50%;
-  width: 50%;
-  position: relative;
+.etapa-panel__drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--drawer-width);
+  height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  padding: 24px 20px 24px 44px;
+  background: var(--cdln-content-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  transform: translateX(100%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+}
+
+.etapa-panel__drawer--open {
+  transform: translateX(0);
+}
+
+.etapa-panel__drawer-inner {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cdln-accent) transparent;
+}
+
+.etapa-panel__drawer-inner::-webkit-scrollbar {
+  width: 4px;
+}
+
+.etapa-panel__drawer-inner::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.etapa-panel__drawer-inner::-webkit-scrollbar-thumb {
+  background: var(--cdln-accent);
+  border-radius: 4px;
+  opacity: 0.5;
 }
 
 /* ---------- Arrow Buttons (slide toggle) ---------- */
@@ -348,29 +386,6 @@ a:hover {
 
 .etapa-panel__arrow-btn--left {
   left: 12px;
-}
-
-/* ---------- Back Panel Inner (scrollable) ---------- */
-.etapa-panel__back-inner {
-  flex: 1;
-  overflow-y: auto;
-  padding: 40px 32px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--cdln-accent) transparent;
-}
-
-.etapa-panel__back-inner::-webkit-scrollbar {
-  width: 4px;
-}
-
-.etapa-panel__back-inner::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.etapa-panel__back-inner::-webkit-scrollbar-thumb {
-  background: var(--cdln-accent);
-  border-radius: 4px;
-  opacity: 0.5;
 }
 
 /* ---------- Media Sections ---------- */
@@ -1037,8 +1052,16 @@ a:hover {
     font-size: clamp(4rem, 20vw, 10rem);
   }
 
-  .etapa-panel__back-inner {
-    padding: 28px 20px;
+  .etapa-panel__content-inner {
+    --drawer-width: min(82vw, 280px);
+  }
+
+  .etapa-panel__drawer {
+    padding: 18px 16px 18px 38px;
+  }
+
+  .etapa-panel__drawer-inner {
+    padding-right: 2px;
   }
 
   .etapa-panel__arrow-btn {
