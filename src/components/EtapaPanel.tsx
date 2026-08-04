@@ -83,9 +83,9 @@ export default function EtapaPanel({ index, isActive }: EtapaPanelProps) {
       role="region"
     >
       <div
-        className={`etapa-panel__content ${visible ? 'etapa-panel__content--visible' : ''}`}
+        className={`etapa-panel__content ${visible ? 'etapa-panel__content--visible' : ''} ${isDrawerOpen ? 'etapa-panel__content--drawer-open' : ''}`}
       >
-        <div className={`etapa-panel__content-inner ${isDrawerOpen ? 'etapa-panel__content-inner--open' : ''}`}>
+        <div className="etapa-panel__content-inner">
           <div className="etapa-panel__main">
             <div className="etapa-panel__image-container">
               <img

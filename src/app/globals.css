@@ -184,6 +184,7 @@ a:hover {
 }
 
 .etapa-panel__content {
+  --drawer-width: 320px;
   position: relative;
   z-index: 2;
   max-width: 680px;
@@ -205,6 +206,10 @@ a:hover {
 .etapa-panel__content--visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.etapa-panel__content--drawer-open {
+  transform: translateY(0) translateX(calc(-1 * (var(--drawer-width) / 2)));
 }
 
 /* ---------- Etapa Panel Header Image ---------- */
@@ -281,16 +286,9 @@ a:hover {
 
 /* ---------- Etapa Drawer (slide-out media menu) ---------- */
 .etapa-panel__content-inner {
-  --drawer-width: 320px;
   position: relative;
   width: 100%;
   overflow: visible;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
-.etapa-panel__content-inner--open {
-  transform: translateX(calc(-1 * var(--drawer-width)));
 }
 
 .etapa-panel__main {
