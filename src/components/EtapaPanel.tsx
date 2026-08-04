@@ -109,14 +109,18 @@ export default function EtapaPanel({ index, isActive }: EtapaPanelProps) {
             </div>
 
             <button
-              className="etapa-panel__arrow-btn etapa-panel__arrow-btn--right"
-              onClick={() => setIsDrawerOpen(true)}
-              aria-label={`${t.menuGames} & ${t.menuComics}`}
+              className={`etapa-panel__arrow-btn etapa-panel__arrow-btn--toggle ${isDrawerOpen ? 'etapa-panel__arrow-btn--open' : ''}`}
+              onClick={() => setIsDrawerOpen((prev) => !prev)}
+              aria-label={isDrawerOpen ? 'Close media menu' : `${t.menuGames} & ${t.menuComics}`}
               aria-expanded={isDrawerOpen}
               type="button"
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M7 4l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                {isDrawerOpen ? (
+                  <path d="M13 4l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                ) : (
+                  <path d="M7 4l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                )}
               </svg>
             </button>
           </div>
@@ -125,17 +129,6 @@ export default function EtapaPanel({ index, isActive }: EtapaPanelProps) {
             className={`etapa-panel__drawer ${isDrawerOpen ? 'etapa-panel__drawer--open' : ''}`}
             aria-label={`${etapa.title} media menu`}
           >
-            <button
-              className="etapa-panel__arrow-btn etapa-panel__arrow-btn--left"
-              onClick={() => setIsDrawerOpen(false)}
-              aria-label="Close media menu"
-              type="button"
-            >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M13 4l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-
             <div className="etapa-panel__drawer-inner">
               <div className="etapa-panel__media-section">
                 <h3 className="etapa-panel__media-heading">{t.menuGames}</h3>

@@ -190,7 +190,7 @@ a:hover {
   width: 100%;
   text-align: center;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
   background: var(--cdln-content-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -284,43 +284,42 @@ a:hover {
   --drawer-width: 320px;
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.etapa-panel__content-inner--open {
+  transform: translateX(calc(-1 * var(--drawer-width)));
 }
 
 .etapa-panel__main {
   position: relative;
   width: 100%;
   overflow: hidden;
-  transition: padding-right 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.etapa-panel__content-inner--open .etapa-panel__main {
-  padding-right: calc(var(--drawer-width) + 24px);
 }
 
 .etapa-panel__drawer {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 100%;
   width: var(--drawer-width);
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 24px 20px 24px 44px;
+  padding: 24px 20px 24px 24px;
   background: var(--cdln-content-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-left: 1px solid rgba(0, 0, 0, 0.08);
-  transform: translateX(100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  transition: opacity 0.25s ease;
   z-index: 3;
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
 }
 
 .etapa-panel__drawer--open {
-  transform: translateX(0);
   opacity: 1;
   pointer-events: auto;
 }
@@ -381,12 +380,12 @@ a:hover {
   box-shadow: var(--cdln-focus-ring);
 }
 
-.etapa-panel__arrow-btn--right {
+.etapa-panel__arrow-btn--toggle {
   right: 12px;
 }
 
-.etapa-panel__arrow-btn--left {
-  left: 12px;
+.etapa-panel__arrow-btn--toggle.etapa-panel__arrow-btn--open {
+  right: 12px;
 }
 
 /* ---------- Media Sections ---------- */
@@ -1055,10 +1054,6 @@ a:hover {
 
   .etapa-panel__content-inner {
     --drawer-width: min(82vw, 280px);
-  }
-
-  .etapa-panel__content-inner--open .etapa-panel__main {
-    padding-right: calc(var(--drawer-width) + 12px);
   }
 
   .etapa-panel__drawer {
