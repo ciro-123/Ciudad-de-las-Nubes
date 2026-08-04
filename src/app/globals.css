@@ -466,24 +466,6 @@ a:hover {
   transition: color var(--cdln-transition-color);
 }
 
-/* ---------- Background text overlay for depth ---------- */
-.etapa-panel__bg-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--cdln-font-display);
-  font-size: clamp(6rem, 18vw, 16rem);
-  font-weight: 700;
-  color: var(--cdln-accent);
-  opacity: 0.03;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  z-index: 1;
-  transition: color var(--cdln-transition-color);
-}
-
 /* ---------- Timeline Navigation ---------- */
 .timeline-nav {
   position: fixed;

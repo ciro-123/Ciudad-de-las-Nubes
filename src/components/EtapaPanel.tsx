@@ -69,11 +69,6 @@ export default function EtapaPanel({ index, isActive }: EtapaPanelProps) {
       aria-label={etapa.title}
       role="region"
     >
-      {/* Large background text for depth */}
-      <span className="etapa-panel__bg-text" aria-hidden="true">
-        {etapa.title}
-      </span>
-
       <div
         className={`etapa-panel__content ${visible ? 'etapa-panel__content--visible' : ''}`}
       >
