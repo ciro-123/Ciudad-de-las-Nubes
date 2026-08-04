@@ -17,6 +17,8 @@ export interface Translations {
   menuGames: string;
   menuComics: string;
   comingSoon: string;
+  noGamesYet: string;
+  noComicsYet: string;
   enterTimeline: string;
   landingTitle: string;
   landingSubtitle: string;
@@ -35,6 +37,8 @@ const translations: Record<Language, Translations> = {
     menuGames: 'Juegos',
     menuComics: 'Cómics',
     comingSoon: 'Próximamente...',
+    noGamesYet: 'Aún no hay juegos en esta etapa',
+    noComicsYet: 'Aún no hay cómics en esta etapa',
     enterTimeline: 'Explorar la Cronología',
     landingTitle: 'Ciudad de las Nubes',
     landingSubtitle: 'El universo de Gooblin Studio',
@@ -82,6 +86,8 @@ const translations: Record<Language, Translations> = {
     menuGames: 'Games',
     menuComics: 'Comics',
     comingSoon: 'Coming soon...',
+    noGamesYet: 'No games in this stage yet',
+    noComicsYet: 'No comics in this stage yet',
     enterTimeline: 'Explore the Timeline',
     landingTitle: 'Ciudad de las Nubes',
     landingSubtitle: 'The Gooblin Studio Universe',

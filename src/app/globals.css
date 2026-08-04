@@ -279,42 +279,191 @@ a:hover {
   transition: background var(--cdln-transition-color);
 }
 
-.etapa-panel__game-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 24px;
-  font-family: var(--cdln-font-ui);
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--cdln-accent);
-  border: 1px solid var(--cdln-accent);
-  border-radius: var(--cdln-radius);
-  background: transparent;
-  cursor: pointer;
-  transition: color var(--cdln-transition-fast),
-              background var(--cdln-transition-fast),
-              border-color var(--cdln-transition-fast);
+/* ---------- Etapa Slider (front ↔ back) ---------- */
+.etapa-panel__slider {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
-.etapa-panel__game-link:hover {
+.etapa-panel__slider--flipped {
+  transform: translateX(-50%);
+}
+
+.etapa-panel__front {
+  flex: 0 0 50%;
+  width: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.etapa-panel__back {
+  flex: 0 0 50%;
+  width: 50%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- Arrow Buttons (slide toggle) ---------- */
+.etapa-panel__arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--cdln-accent);
+  background: var(--cdln-content-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--cdln-accent);
+  cursor: pointer;
+  transition: background var(--cdln-transition-fast),
+              color var(--cdln-transition-fast),
+              transform var(--cdln-transition-fast),
+              border-color var(--cdln-transition-color);
+}
+
+.etapa-panel__arrow-btn:hover {
   background: var(--cdln-accent);
   color: var(--cdln-bg-base);
-  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
 }
 
-.etapa-panel__game-link:focus-visible {
+.etapa-panel__arrow-btn:focus-visible {
   box-shadow: var(--cdln-focus-ring);
 }
 
-.etapa-panel__game-link-arrow {
-  font-size: 16px;
-  transition: transform var(--cdln-transition-fast);
+.etapa-panel__arrow-btn--right {
+  right: 12px;
 }
 
-.etapa-panel__game-link:hover .etapa-panel__game-link-arrow {
+.etapa-panel__arrow-btn--left {
+  left: 12px;
+}
+
+/* ---------- Back Panel Inner (scrollable) ---------- */
+.etapa-panel__back-inner {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 32px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cdln-accent) transparent;
+}
+
+.etapa-panel__back-inner::-webkit-scrollbar {
+  width: 4px;
+}
+
+.etapa-panel__back-inner::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.etapa-panel__back-inner::-webkit-scrollbar-thumb {
+  background: var(--cdln-accent);
+  border-radius: 4px;
+  opacity: 0.5;
+}
+
+/* ---------- Media Sections ---------- */
+.etapa-panel__media-section {
+  margin-bottom: 8px;
+}
+
+.etapa-panel__media-heading {
+  font-family: var(--cdln-font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cdln-accent);
+  margin-bottom: 16px;
+  transition: color var(--cdln-transition-color);
+}
+
+.etapa-panel__media-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--cdln-accent);
+  opacity: 0.2;
+  margin: 16px 0;
+  transition: background var(--cdln-transition-color);
+}
+
+/* ---------- Media Grid ---------- */
+.etapa-panel__media-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.etapa-panel__media-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--cdln-radius);
+  border: 1px solid var(--cdln-accent);
+  background: transparent;
+  color: var(--cdln-text-primary);
+  text-decoration: none;
+  font-family: var(--cdln-font-body);
+  font-size: 15px;
+  cursor: pointer;
+  transition: background var(--cdln-transition-fast),
+              color var(--cdln-transition-fast),
+              border-color var(--cdln-transition-fast),
+              transform var(--cdln-transition-fast);
+}
+
+.etapa-panel__media-item:hover {
+  background: var(--cdln-accent);
+  color: var(--cdln-bg-base);
   transform: translateX(4px);
+  opacity: 1;
+}
+
+.etapa-panel__media-item-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.etapa-panel__media-item-label {
+  flex: 1;
+  line-height: 1.3;
+}
+
+.etapa-panel__media-item-arrow {
+  font-size: 16px;
+  opacity: 0.5;
+  transition: opacity var(--cdln-transition-fast),
+              transform var(--cdln-transition-fast);
+}
+
+.etapa-panel__media-item:hover .etapa-panel__media-item-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ---------- Empty State ---------- */
+.etapa-panel__media-empty {
+  font-family: var(--cdln-font-body);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--cdln-text-secondary);
+  opacity: 0.6;
+  text-align: center;
+  padding: 20px 12px;
+  max-width: none;
+  transition: color var(--cdln-transition-color);
 }
 
 /* ---------- Background text overlay for depth ---------- */
@@ -904,6 +1053,23 @@ a:hover {
 
   .etapa-panel__bg-text {
     font-size: clamp(4rem, 20vw, 10rem);
+  }
+
+  .etapa-panel__back-inner {
+    padding: 28px 20px;
+  }
+
+  .etapa-panel__arrow-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .etapa-panel__arrow-btn--right {
+    right: 8px;
+  }
+
+  .etapa-panel__arrow-btn--left {
+    left: 8px;
   }
 
   /* Mobile sidebar: slide from top instead of left */
