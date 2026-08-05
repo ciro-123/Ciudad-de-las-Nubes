@@ -34,3 +34,4 @@ jobs:
         local-dir: ./out/
         server-dir: ./www/
         dangerous-clean-slate: true
+        dangerous-clean-slate: true
