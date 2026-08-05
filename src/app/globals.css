@@ -664,7 +664,7 @@ a:hover {
   border-radius: 999px;
 }
 
-..contact-shortcut__social-logo {
+.contact-shortcut__social-logo {
   width: 24px;
   height: 24px;
   display: inline-flex;
