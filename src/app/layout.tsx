@@ -23,12 +23,29 @@ export const metadata: Metadata = {
   keywords: [
     'Gooblin Studio',
     'Ciudad de las Nubes',
-    'indie games',
-    'game universe',
+    'juegos indie',
+    'universo de fantasía',
+    'ficción fantástica',
     'lore',
     'timeline',
+    'cronología',
   ],
   authors: [{ name: 'Gooblin Studio' }],
+  metadataBase: new URL('https://gooblinstudio.com'),
+  alternates: {
+    canonical: 'https://gooblinstudio.com/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     title: 'Ciudad de las Nubes — Gooblin Studio',
     description:

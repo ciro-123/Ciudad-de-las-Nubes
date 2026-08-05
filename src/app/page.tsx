@@ -11,7 +11,7 @@ import ContactShortcut from '@/components/ContactShortcut';
 export default function Home() {
   return (
     <LanguageProvider>
-      <main>
+      <main id="main-content">
         <HorizontalScroller />
         <ContactShortcut />
       </main>
