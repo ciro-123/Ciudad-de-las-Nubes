@@ -25,11 +25,19 @@ jobs:
     - name: Build static site
       run: npm run build
 
+    - name: Check files (Debug)
+      run: |
+        echo "Contents of root directory:"
+        ls -la
+        echo "Contents of out directory:"
+        ls -la ./out/ || echo "WARNING: The out folder does not exist!"
+
     - name: Sync compiled build to OVH
-      uses: appleboy/ftp-action@master
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        host: ${{ secrets.FTP_SERVER }}
+        server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local_dir: ./out/
-        remote_dir: ./www/
+        local-dir: out/
+        server-dir: www/
+        dangerous-clean-slate: true
