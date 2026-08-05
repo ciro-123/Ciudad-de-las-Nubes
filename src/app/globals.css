@@ -664,15 +664,15 @@ a:hover {
   border-radius: 999px;
 }
 
-.contact-shortcut__social-logo {
+..contact-shortcut__social-logo {
   width: 24px;
   height: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--cdln-accent);
-  color: var(--cdln-bg-base);
+  background: #000;
+  color: #fff;
   font-weight: 700;
   font-size: 12px;
 }
