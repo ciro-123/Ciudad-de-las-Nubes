@@ -79,7 +79,7 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#F5F2ED" />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         {/* Skip to content link for accessibility */}
         <a href="#main-content" className="skip-link">
           Saltar al contenido
