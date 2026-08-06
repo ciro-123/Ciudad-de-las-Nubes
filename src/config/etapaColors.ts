@@ -30,8 +30,6 @@ export interface EtapaColors {
   sunGlareColor: number;
   /** Vanta.js sunlightColor */
   sunlightColor: number;
-  /** Particle overlay color */
-  particleColor: string;
 }
 
 const etapaColors: EtapaColors[] = [
@@ -49,7 +47,6 @@ const etapaColors: EtapaColors[] = [
     sunColor: 0xF2C94C,
     sunGlareColor: 0xFFE082,
     sunlightColor: 0xFFF3D0,
-    particleColor: 'rgba(242, 201, 76, 0.45)',
   },
   // 1 — Conquista: Stormy charcoal blue clouds with salmon sunset glow & crimson red general cape
   {
@@ -65,7 +62,6 @@ const etapaColors: EtapaColors[] = [
     sunColor: 0xA8322D,
     sunGlareColor: 0xC84B31,
     sunlightColor: 0xE06D53,
-    particleColor: 'rgba(200, 75, 49, 0.45)',
   },
   // 2 — Dominio: Mediterranean sky blue background, warm cream architecture & azure tunics
   {
@@ -81,7 +77,6 @@ const etapaColors: EtapaColors[] = [
     sunColor: 0x2B6CB0,
     sunGlareColor: 0x3182CE,
     sunlightColor: 0x63B3ED,
-    particleColor: 'rgba(43, 108, 176, 0.4)',
   },
   // 3 — Decadencia: Dramatic overcast storm grey sky, silver clouds & golden imperial domes
   {
@@ -97,7 +92,6 @@ const etapaColors: EtapaColors[] = [
     sunColor: 0xC5A046,
     sunGlareColor: 0xD4AF37,
     sunlightColor: 0xE6C665,
-    particleColor: 'rgba(197, 160, 70, 0.45)',
   },
   // 4 — Liberación: Dark obsidian bronze backdrop with a brilliant warm golden divine halo
   {
@@ -113,7 +107,6 @@ const etapaColors: EtapaColors[] = [
     sunColor: 0xDAA520,
     sunGlareColor: 0xF0C040,
     sunlightColor: 0xFFE080,
-    particleColor: 'rgba(218, 165, 32, 0.5)',
   },
   // 5 — Guerra Total: Clear steel blue sky with red army banners & scarlet blood-stained path
   {
@@ -129,7 +122,6 @@ const etapaColors: EtapaColors[] = [
     sunColor: 0xC53030,
     sunGlareColor: 0xE53E3E,
     sunlightColor: 0xF56565,
-    particleColor: 'rgba(197, 48, 48, 0.45)',
   },
   // 6 — Torres Celestiales: Deep celestial night blue space with blue nebula clouds & golden tower light
   {
@@ -145,7 +137,6 @@ const etapaColors: EtapaColors[] = [
     sunColor: 0xC69214,
     sunGlareColor: 0xE5B83A,
     sunlightColor: 0xF7D070,
-    particleColor: 'rgba(229, 184, 58, 0.5)',
   },
 ];
 

@@ -9,7 +9,6 @@ import {
 } from 'react';
 import etapaColors, { lerpColor, lerpCSSColor, lerpRGBA } from '@/config/etapaColors';
 import VantaBackground from './VantaBackground';
-import ParticleOverlay from './ParticleOverlay';
 import EtapaPanel from './EtapaPanel';
 import TimelineNav from './TimelineNav';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -25,7 +24,6 @@ const DEAD_ZONE = 0.15;
  * - Scroll lock during transitions (prevents rapid-fire skipping)
  * - Scroll-linked color transitions with dead zone
  * - Vanta background color sync
- * - Particle overlay color sync
  * - Keyboard navigation
  */
 export default function HorizontalScroller() {
@@ -213,7 +211,6 @@ export default function HorizontalScroller() {
       textSecondary: lerpCSSColor(from.textSecondary, to.textSecondary, t),
       contentBg: lerpRGBA(from.contentBg, to.contentBg, t),
       cardBorder: lerpCSSColor(from.cardBorder, to.cardBorder, t),
-      particleColor: lerpRGBA(from.particleColor, to.particleColor, t),
       skyColor: lerpColor(from.skyColor, to.skyColor, t),
       cloudColor: lerpColor(from.cloudColor, to.cloudColor, t),
       cloudShadowColor: lerpColor(from.cloudShadowColor, to.cloudShadowColor, t),
@@ -233,7 +230,6 @@ export default function HorizontalScroller() {
         '--cdln-text-secondary': interpolatedColors.textSecondary,
         '--cdln-content-bg': interpolatedColors.contentBg,
         '--cdln-card-border': interpolatedColors.cardBorder,
-        '--cdln-particle-color': interpolatedColors.particleColor,
       } as React.CSSProperties),
     [interpolatedColors]
   );
@@ -249,9 +245,6 @@ export default function HorizontalScroller() {
         sunGlareColor={interpolatedColors.sunGlareColor}
         sunlightColor={interpolatedColors.sunlightColor}
       />
-
-      {/* Particle motes overlay */}
-      <ParticleOverlay color={interpolatedColors.particleColor} />
 
       {/* Hamburger sidebar menu */}
       <SideMenu />

@@ -13,7 +13,6 @@
   --cdln-text-primary: #2C2416;
   --cdln-text-secondary: #5A4A2A;
   --cdln-content-bg: rgba(245, 240, 230, 0.55);
-  --cdln-particle-color: rgba(201, 168, 76, 0.4);
 
   /* Static design tokens */
   --cdln-bg-base: #F5F2ED;
@@ -132,17 +131,6 @@ a:hover {
 
 .vanta-bg canvas {
   pointer-events: auto;
-}
-
-/* ---------- Particle Overlay Layer ---------- */
-.particle-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
 }
 
 /* ---------- Horizontal Scroller ---------- */
@@ -1097,8 +1085,7 @@ a:hover {
     transform: none;
   }
 
-  .vanta-bg,
-  .particle-overlay {
+  .vanta-bg {
     display: none;
   }
 }
