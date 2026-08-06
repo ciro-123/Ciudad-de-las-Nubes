@@ -48,7 +48,7 @@ const translations: Record<Language, Translations> = {
     copiedClipboard: 'Copiado en el portapapeles',
     etapas: [
       {
-        title: 'Bohepito',
+        title: 'Leyendas',
         body: 'Bohemundo sostiene sobre vosotros el Sol. Sólo, frente al Abismo, su fuerza mantiene a las estrellas lejos de nuestra tierra. Giulia, Helión, Apopino; vuestro es este nuevo mundo esculpido lejos de la oscuridad abismal.',
       },
       {
