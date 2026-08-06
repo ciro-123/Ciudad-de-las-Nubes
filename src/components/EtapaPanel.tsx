@@ -10,13 +10,13 @@ interface EtapaPanelProps {
 }
 
 const ETAPA_IMAGES = [
-  '/imgs/1.LEYENDAS.png',
-  '/imgs/2.CONQUISTA.png',
-  '/imgs/3.DOMINIO.png',
-  '/imgs/4.DECADENCIA.png',
-  '/imgs/5.LIBERACIÓN.png',
-  '/imgs/6.GUERRA TOTAL.png',
-  '/imgs/7.TORRES CELESTIALES.png',
+  '/imgs/1.LEYENDAS.webp',
+  '/imgs/2.CONQUISTA.webp',
+  '/imgs/3.DOMINIO.webp',
+  '/imgs/4.DECADENCIA.webp',
+  '/imgs/5.LIBERACIÓN.webp',
+  '/imgs/6.GUERRA TOTAL.webp',
+  '/imgs/7.TORRES CELESTIALES.webp',
 ];
 
 const ETAPA_IMAGE_POSITIONS = [
