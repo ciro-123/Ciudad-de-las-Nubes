@@ -122,11 +122,11 @@ const translations: Record<Language, Translations> = {
       },
       {
         title: 'Total War',
-        body: 'After centuries of reign, the Daughter of Bohemund has been murdered upon her throne. The sky has split apart, and the earth roars for the blood that has been spilled. Has humanity condemned itself? Have they lost the favor of the heavens? Has the grace of the Sun abandoned them?',
+        body: 'After centuries of reign, the Daughter of Bohemundo has been murdered upon her throne. The sky has split apart, and the earth roars for the blood that has been spilled. Has humanity condemned itself? Have they lost the favor of the heavens? Has the grace of the Sun abandoned them?',
       },
       {
         title: 'Celestial Towers',
-        body: 'Beneath the shadow of the fractured sky, angels and humans were forgiven. United by the same fate, they must hold up the heavens with strength; with the same strength with which Bohemund holds the Sun; with the same strength with which Helion holds the Moon above our heads.',
+        body: 'Beneath the shadow of the fractured sky, angels and humans were forgiven. United by the same fate, they must hold up the heavens with strength; with the same strength with which Bohemundo holds the Sun; with the same strength with which Helion holds the Moon above our heads.',
       },
     ],
   },
