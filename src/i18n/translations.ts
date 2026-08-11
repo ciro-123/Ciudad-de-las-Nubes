@@ -76,6 +76,7 @@ const translations: Record<Language, Translations> = {
       {
         title: 'Torres Celestiales',
         body: 'Bajo la sombra del cielo fracturado, ángeles y humanos fueron perdonados. Unidos por el mismo destino, deben sostener el cielo con fuerza; con la misma fuerza que Bohemundo sostiene el Sol; con la misma fuerza que Helión sostiene sobre nuestras cabezas la Luna.',
+        gameLabel: 'The Tower',
       },
     ],
   },
@@ -127,6 +128,7 @@ const translations: Record<Language, Translations> = {
       {
         title: 'Celestial Towers',
         body: 'Beneath the shadow of the fractured sky, angels and humans were forgiven. United by the same fate, they must hold up the heavens with strength; with the same strength with which Bohemundo holds the Sun; with the same strength with which Helion holds the Moon above our heads.',
+        gameLabel: 'The Tower',
       },
     ],
   },
