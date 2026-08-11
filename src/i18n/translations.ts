@@ -141,7 +141,7 @@ export const etapaGameLinks: (string | null)[] = [
   null, // Decadencia
   'https://store.steampowered.com/app/2393490/Night_of_Wolves/', // Liberación
   null, // Guerra Total
-  null, // Torres Celestiales
+  'https://2high2work.itch.io/the-tower'
 ];
 
 export default translations;

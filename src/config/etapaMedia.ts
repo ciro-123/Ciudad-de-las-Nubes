@@ -44,7 +44,9 @@ const etapaMedia: EtapaMedia[] = [
   { games: [], comics: [] },
 
   // 6 — Torres Celestiales
-  { games: [], comics: [] },
+  { games: [
+    { label: 'The Tower', url: 'https://2high2work.itch.io/the-tower' },
+  ], comics: [] },
 ];
 
 export default etapaMedia;
