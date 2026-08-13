@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { etapaGameLinks } from '@/i18n/translations';
+import ContactShortcut from './ContactShortcut';
 
 /**
  * Hamburger menu button (top-left) + sliding sidebar.
@@ -121,6 +122,11 @@ export default function SideMenu() {
           <div className="side-menu__section">
             <h3 className="side-menu__heading">{t.menuComics}</h3>
             <p className="side-menu__empty">{t.comingSoon}</p>
+          </div>
+
+          {/* Contact section — visible inside hamburger menu on phones */}
+          <div className="side-menu__contact-wrapper">
+            <ContactShortcut isMobileMenu />
           </div>
         </div>
       </nav>

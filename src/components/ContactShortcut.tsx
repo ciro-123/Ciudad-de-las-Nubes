@@ -6,7 +6,11 @@ import { useLanguage } from '@/i18n/LanguageContext';
 const EMAIL = 'info@gooblinstudio.com';
 const X_URL = 'https://x.com/GooblinStudio';
 
-function ContactShortcut() {
+interface ContactShortcutProps {
+  isMobileMenu?: boolean;
+}
+
+function ContactShortcut({ isMobileMenu = false }: ContactShortcutProps) {
   const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
 
@@ -42,7 +46,10 @@ function ContactShortcut() {
   };
 
   return (
-    <div className="contact-shortcut" aria-live="polite">
+    <div
+      className={`contact-shortcut ${isMobileMenu ? 'contact-shortcut--in-menu' : 'contact-shortcut--floating'}`}
+      aria-live="polite"
+    >
       <button
         type="button"
         className="contact-shortcut__button"

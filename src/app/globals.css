@@ -691,6 +691,10 @@ a:hover {
   color: var(--cdln-accent);
 }
 
+.side-menu__contact-wrapper {
+  display: none;
+}
+
 .contact-shortcut {
   position: fixed;
   right: 28px;
@@ -1075,11 +1079,6 @@ a:hover {
     z-index: 25;
   }
 
-  .contact-shortcut {
-    bottom: 76px;
-    right: 16px;
-  }
-
   .timeline-nav {
     bottom: 16px;
     padding: 8px 14px;
@@ -1126,6 +1125,62 @@ a:hover {
 
   .side-menu__inner {
     padding: 80px 24px 32px;
+  }
+
+  /* Hide floating contact shortcut on main screen on phone */
+  .contact-shortcut--floating {
+    display: none !important;
+  }
+
+  /* Show contact shortcut inside lateral hamburger menu on phone */
+  .side-menu__contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    width: 100%;
+  }
+
+  .side-menu__contact-wrapper .contact-shortcut--in-menu {
+    position: static;
+    right: auto;
+    bottom: auto;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .side-menu__contact-wrapper .contact-shortcut__button,
+  .side-menu__contact-wrapper .contact-shortcut__social {
+    font-size: 12px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .side-menu__contact-wrapper .contact-shortcut__email {
+    font-size: 12px;
+  }
+
+  .side-menu__contact-wrapper .contact-shortcut__social-logo {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+
+  .side-menu__contact-wrapper .contact-shortcut__social-label {
+    font-size: 10px;
+  }
+
+  .side-menu__contact-wrapper .contact-shortcut__toast {
+    right: 0;
+    bottom: calc(100% + 6px);
   }
 }
 
