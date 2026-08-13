@@ -141,6 +141,7 @@ a:hover {
   height: 100vh;
   overflow-x: auto;
   overflow-y: hidden;
+  touch-action: pan-y;
   scroll-snap-type: x mandatory;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */

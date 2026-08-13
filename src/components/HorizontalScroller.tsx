@@ -36,10 +36,16 @@ export default function HorizontalScroller() {
 
   // Scroll lock: prevents new navigation until current transition finishes
   const isScrollingRef = useRef(false);
-  // The index we're navigating TO (used by wheel handler)
+  // Timestamp of last triggered stage transition (absorbs trackpad momentum & touch spam)
+  const lastNavTimeRef = useRef(0);
+  // The index we're navigating TO (used by wheel/touch/keyboard handlers)
   const targetIndexRef = useRef(0);
   // Fallback unlock timer
   const scrollLockTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Touch tracking
+  const touchStartXRef = useRef(0);
+  const touchStartYRef = useRef(0);
 
   // Throttle scroll handler
   const rafRef = useRef<number>(0);
@@ -63,6 +69,11 @@ export default function HorizontalScroller() {
 
     // Which panel are we closest to?
     const nearest = Math.round(clampedPos);
+
+    // If not mid-animation, keep targetIndex synced to closest panel
+    if (!isScrollingRef.current) {
+      targetIndexRef.current = nearest;
+    }
 
     // Blend between current panel and next/prev
     const floor = Math.floor(clampedPos);
@@ -102,6 +113,7 @@ export default function HorizontalScroller() {
     const clamped = Math.max(0, Math.min(index, ETAPA_COUNT - 1));
     targetIndexRef.current = clamped;
     isScrollingRef.current = true;
+    lastNavTimeRef.current = Date.now();
 
     // Clear any previous fallback timer
     if (scrollLockTimerRef.current) {
@@ -115,13 +127,14 @@ export default function HorizontalScroller() {
       behavior: 'smooth',
     });
 
-    // Fallback: unlock after 800ms in case scrollend doesn't fire
+    // Fallback: unlock after 600ms in case scrollend doesn't fire
     scrollLockTimerRef.current = setTimeout(() => {
       isScrollingRef.current = false;
-    }, 800);
+      setActiveIndex(clamped);
+    }, 600);
   }, []);
 
-  // Unlock scroll when the smooth scroll transition finishes
+  // Unlock scroll and re-sync target index when smooth scroll finishes
   useEffect(() => {
     const scroller = scrollerRef.current;
     if (!scroller) return;
@@ -132,46 +145,98 @@ export default function HorizontalScroller() {
         clearTimeout(scrollLockTimerRef.current);
         scrollLockTimerRef.current = null;
       }
+      const firstPanel = scroller.querySelector('.etapa-panel') as HTMLElement;
+      const stepWidth = firstPanel ? firstPanel.offsetWidth : scroller.clientWidth;
+      if (stepWidth > 0) {
+        const nearest = Math.round(scroller.scrollLeft / stepWidth);
+        targetIndexRef.current = Math.max(0, Math.min(nearest, ETAPA_COUNT - 1));
+        setActiveIndex(targetIndexRef.current);
+      }
     };
 
     scroller.addEventListener('scrollend', handleScrollEnd);
     return () => scroller.removeEventListener('scrollend', handleScrollEnd);
   }, []);
 
-  // Discrete wheel navigation: one tick = one etapa, locked during transition
+  // Strict Touch Swipe Navigation for phones/tablets (1 stage at a time, re-centers if short)
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return;
+      touchStartXRef.current = e.touches[0].clientX;
+      touchStartYRef.current = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (e.changedTouches.length === 0) return;
+
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const deltaX = touchEndX - touchStartXRef.current;
+      const deltaY = touchEndY - touchStartYRef.current;
+
+      // Ignore if transition is in progress or if vertical scroll dominates
+      if (isScrollingRef.current) return;
+      if (Math.abs(deltaY) > Math.abs(deltaX)) return;
+
+      const current = targetIndexRef.current;
+
+      // Swipe threshold: 30px
+      if (Math.abs(deltaX) >= 30) {
+        // Swipe Left (finger moved left) -> Next stage (+1)
+        // Swipe Right (finger moved right) -> Prev stage (-1)
+        const direction = deltaX < 0 ? 1 : -1;
+        navigateTo(current + direction);
+      } else {
+        // Short swipe: re-center to current stage so it NEVER stays broken in the middle!
+        navigateTo(current);
+      }
+    };
+
+    scroller.addEventListener('touchstart', handleTouchStart, { passive: true });
+    scroller.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      scroller.removeEventListener('touchstart', handleTouchStart);
+      scroller.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [navigateTo]);
+
+  // Discrete wheel & trackpad navigation: strictly 1 stage at a time with momentum filter
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
 
-      // Locked — ignore all wheel events until transition finishes
-      if (isScrollingRef.current) return;
+      const now = Date.now();
+      // Ignore wheel events if currently animating or within 450ms of last transition (absorbs trackpad momentum)
+      if (isScrollingRef.current || now - lastNavTimeRef.current < 450) return;
 
-      const scroller = scrollerRef.current;
-      if (!scroller) return;
-
-      // Determine direction from any non-zero delta
-      let direction = 0;
+      let delta = 0;
       if (Math.abs(e.deltaY) >= Math.abs(e.deltaX)) {
-        direction = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
+        delta = e.deltaY;
       } else {
-        direction = e.deltaX > 0 ? 1 : e.deltaX < 0 ? -1 : 0;
+        delta = e.deltaX;
       }
-      if (direction === 0) return;
 
+      // Ignore tiny inertia ticks below threshold
+      if (Math.abs(delta) < 8) return;
+
+      const direction = delta > 0 ? 1 : -1;
       const current = targetIndexRef.current;
       const next = Math.max(0, Math.min(current + direction, ETAPA_COUNT - 1));
 
-      // Already at boundary
-      if (next === current) return;
-
-      navigateTo(next);
+      if (next !== current) {
+        navigateTo(next);
+      }
     };
 
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
   }, [navigateTo]);
 
-  // Keyboard navigation (also uses scroll lock)
+  // Keyboard navigation (ArrowRight, ArrowLeft, etc.)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isScrollingRef.current) return;
