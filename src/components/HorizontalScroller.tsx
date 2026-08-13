@@ -29,10 +29,20 @@ const DEAD_ZONE = 0.15;
 export default function HorizontalScroller() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [openDrawerIndex, setOpenDrawerIndex] = useState<number | null>(null);
   const [blendState, setBlendState] = useState({
     index: 0,
     t: 0,
   });
+
+  // Automatically close any open media drawer when active stage changes (swiping / navigating)
+  useEffect(() => {
+    setOpenDrawerIndex(null);
+  }, [activeIndex]);
+
+  const handleToggleDrawer = useCallback((index: number) => {
+    setOpenDrawerIndex((prev) => (prev === index ? null : index));
+  }, []);
 
   // Scroll lock: prevents new navigation until current transition finishes
   const isScrollingRef = useRef(false);
@@ -332,14 +342,24 @@ export default function HorizontalScroller() {
         tabIndex={0}
       >
         <div className="horizontal-scroller__track">
-          {Array.from({ length: ETAPA_COUNT }, (_, i) => (
-            <EtapaPanel
-              key={i}
-              index={i}
-              isActive={i === activeIndex}
-              onSelect={navigateTo}
-            />
-          ))}
+          {Array.from({ length: ETAPA_COUNT }, (_, i) => {
+            let pushState: 'left' | 'right' | null = null;
+            if (openDrawerIndex !== null && openDrawerIndex !== i) {
+              pushState = i < openDrawerIndex ? 'left' : 'right';
+            }
+
+            return (
+              <EtapaPanel
+                key={i}
+                index={i}
+                isActive={i === activeIndex}
+                isDrawerOpen={openDrawerIndex === i}
+                pushState={pushState}
+                onSelect={navigateTo}
+                onToggleDrawer={handleToggleDrawer}
+              />
+            );
+          })}
         </div>
       </div>
 

@@ -34,6 +34,30 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.etapa-panel,
+.etapa-panel__content,
+.etapa-panel__arrow-btn,
+.etapa-panel__media-item,
+.timeline-nav__dot,
+.language-switcher__btn,
+.hamburger-btn,
+.side-menu__link,
+.contact-shortcut__button,
+.contact-shortcut__social {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.etapa-panel--inactive,
+.etapa-panel__arrow-btn,
+.timeline-nav,
+.language-switcher,
+.hamburger-btn {
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 html {
@@ -1034,6 +1058,21 @@ a:hover {
 
   .side-menu__inner {
     padding: 80px 24px 32px;
+  }
+
+  /* When an stage card drawer opens on mobile, slide peeking cards out of the way */
+  .etapa-panel--push-left .etapa-panel__content {
+    transform: translateX(-100vw) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease !important;
+  }
+
+  .etapa-panel--push-right .etapa-panel__content {
+    transform: translateX(100vw) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease !important;
   }
 
 }

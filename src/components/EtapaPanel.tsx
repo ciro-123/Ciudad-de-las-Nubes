@@ -7,7 +7,10 @@ import etapaMedia from '@/config/etapaMedia';
 interface EtapaPanelProps {
   index: number;
   isActive: boolean;
+  isDrawerOpen?: boolean;
+  pushState?: 'left' | 'right' | null;
   onSelect?: (index: number) => void;
+  onToggleDrawer?: (index: number) => void;
 }
 
 const ETAPA_IMAGES = [
@@ -35,27 +38,29 @@ const ETAPA_IMAGE_POSITIONS = [
  * Shows title, body text. An arrow on the right edge slides the card
  * left to reveal a Games & Comics panel.
  */
-export default function EtapaPanel({ index, isActive, onSelect }: EtapaPanelProps) {
+export default function EtapaPanel({
+  index,
+  isActive,
+  isDrawerOpen = false,
+  pushState = null,
+  onSelect,
+  onToggleDrawer,
+}: EtapaPanelProps) {
   const { t } = useLanguage();
   const etapa = t.etapas[index];
   const media = etapaMedia[index];
-  const [visible, setVisible] = useState(true);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  useEffect(() => {
-    if (!isActive) {
-      setIsDrawerOpen(false);
-    }
-  }, [isActive]);
+  const [visible] = useState(true);
 
   const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 
   const hasGames = media.games.length > 0;
   const hasComics = media.comics.length > 0;
 
+  const pushClass = pushState ? `etapa-panel--push-${pushState}` : '';
+
   return (
     <section
-      className={`etapa-panel ${isActive ? 'etapa-panel--active' : 'etapa-panel--inactive'}`}
+      className={`etapa-panel ${isActive ? 'etapa-panel--active' : 'etapa-panel--inactive'} ${pushClass}`}
       id={`etapa-${index}`}
       aria-label={etapa.title}
       role="region"
@@ -89,7 +94,10 @@ export default function EtapaPanel({ index, isActive, onSelect }: EtapaPanelProp
 
             <button
               className={`etapa-panel__arrow-btn etapa-panel__arrow-btn--toggle ${isDrawerOpen ? 'etapa-panel__arrow-btn--open' : ''}`}
-              onClick={() => setIsDrawerOpen((prev) => !prev)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleDrawer?.(index);
+              }}
               aria-label={isDrawerOpen ? 'Close media menu' : `${t.menuGames} & ${t.menuComics}`}
               aria-expanded={isDrawerOpen}
               type="button"
