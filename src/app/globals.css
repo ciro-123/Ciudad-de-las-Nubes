@@ -187,8 +187,8 @@ a:hover {
   border-radius: var(--cdln-radius);
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease,
-              background 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.6s ease, background 0.6s ease;
 }
 
 .etapa-panel__content--visible {
@@ -198,6 +198,42 @@ a:hover {
 
 .etapa-panel__content--drawer-open {
   transform: translateY(0) translateX(calc(-1 * (var(--drawer-width) / 2)));
+}
+
+/* ---------- Desktop Stage Peek (Adjacent card previews) ---------- */
+@media (min-width: 769px) {
+  .horizontal-scroller__track {
+    padding-left: 22vw;
+    padding-right: 22vw;
+  }
+
+  .etapa-panel {
+    flex: 0 0 56vw;
+    width: 56vw;
+    overflow: visible;
+  }
+
+  .etapa-panel--inactive {
+    cursor: pointer;
+  }
+
+  .etapa-panel--inactive .etapa-panel__content {
+    transform: scale(0.86);
+    filter: brightness(0.5);
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  .etapa-panel--active .etapa-panel__content {
+    transform: scale(1);
+    filter: brightness(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .etapa-panel--active .etapa-panel__content--drawer-open {
+    transform: scale(1) translateX(calc(-1 * (var(--drawer-width) / 2)));
+  }
 }
 
 /* ---------- Etapa Panel Header Image ---------- */

@@ -7,6 +7,7 @@ import etapaMedia from '@/config/etapaMedia';
 interface EtapaPanelProps {
   index: number;
   isActive: boolean;
+  onSelect?: (index: number) => void;
 }
 
 const ETAPA_IMAGES = [
@@ -30,44 +31,21 @@ const ETAPA_IMAGE_POSITIONS = [
 ];
 
 /**
- * Individual etapa (phase) panel — full viewport, scroll-snap aligned.
+ * Individual etapa (phase) panel — full viewport on mobile, center-peeking on desktop.
  * Shows title, body text. An arrow on the right edge slides the card
  * left to reveal a Games & Comics panel.
- * Content fades in when active.
  */
-export default function EtapaPanel({ index, isActive }: EtapaPanelProps) {
+export default function EtapaPanel({ index, isActive, onSelect }: EtapaPanelProps) {
   const { t } = useLanguage();
   const etapa = t.etapas[index];
   const media = etapaMedia[index];
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const timerRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!isActive) {
-      const resetFrame = window.requestAnimationFrame(() => {
-        setVisible(false);
-        setIsDrawerOpen(false);
-      });
-
-      return () => {
-        window.cancelAnimationFrame(resetFrame);
-        if (timerRef.current) {
-          clearTimeout(timerRef.current);
-          timerRef.current = null;
-        }
-      };
+      setIsDrawerOpen(false);
     }
-
-    // Slight delay for entrance animation
-    timerRef.current = window.setTimeout(() => setVisible(true), 120);
-
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
-      }
-    };
   }, [isActive]);
 
   const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
@@ -77,10 +55,11 @@ export default function EtapaPanel({ index, isActive }: EtapaPanelProps) {
 
   return (
     <section
-      className="etapa-panel"
+      className={`etapa-panel ${isActive ? 'etapa-panel--active' : 'etapa-panel--inactive'}`}
       id={`etapa-${index}`}
       aria-label={etapa.title}
       role="region"
+      onClick={() => !isActive && onSelect?.(index)}
     >
       <div
         className={`etapa-panel__content ${visible ? 'etapa-panel__content--visible' : ''} ${isDrawerOpen ? 'etapa-panel__content--drawer-open' : ''}`}

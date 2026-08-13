@@ -53,11 +53,12 @@ export default function HorizontalScroller() {
     if (!scroller) return;
 
     const scrollLeft = scroller.scrollLeft;
-    const panelWidth = scroller.clientWidth;
-    if (panelWidth === 0) return;
+    const firstPanel = scroller.querySelector('.etapa-panel') as HTMLElement;
+    const stepWidth = firstPanel ? firstPanel.offsetWidth : scroller.clientWidth;
+    if (stepWidth === 0) return;
 
     // Position as a fraction of total panels
-    const rawPos = scrollLeft / panelWidth;
+    const rawPos = scrollLeft / stepWidth;
     const clampedPos = Math.max(0, Math.min(rawPos, ETAPA_COUNT - 1));
 
     // Which panel are we closest to?
@@ -107,9 +108,10 @@ export default function HorizontalScroller() {
       clearTimeout(scrollLockTimerRef.current);
     }
 
-    const panelWidth = scroller.clientWidth;
+    const firstPanel = scroller.querySelector('.etapa-panel') as HTMLElement;
+    const stepWidth = firstPanel ? firstPanel.offsetWidth : scroller.clientWidth;
     scroller.scrollTo({
-      left: panelWidth * clamped,
+      left: stepWidth * clamped,
       behavior: 'smooth',
     });
 
@@ -270,6 +272,7 @@ export default function HorizontalScroller() {
               key={i}
               index={i}
               isActive={i === activeIndex}
+              onSelect={navigateTo}
             />
           ))}
         </div>
