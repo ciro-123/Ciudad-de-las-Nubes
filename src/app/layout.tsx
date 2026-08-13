@@ -16,6 +16,13 @@ const alegreya = Alegreya({
   display: 'swap',
 });
 
+const socialImage = {
+  url: 'https://gooblinstudio.com/banner.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'Ciudad de las Nubes — Gooblin Studio',
+};
+
 export const metadata: Metadata = {
   title: 'Ciudad de las Nubes — Gooblin Studio',
   description:
@@ -32,6 +39,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Gooblin Studio' }],
   metadataBase: new URL('https://gooblinstudio.com'),
+  icons: {
+    icon: '/favicon.png',
+  },
   alternates: {
     canonical: 'https://gooblinstudio.com/',
   },
@@ -54,15 +64,14 @@ export const metadata: Metadata = {
     siteName: 'Gooblin Studio',
     type: 'website',
     locale: 'es_ES',
+    images: [socialImage],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ciudad de las Nubes — Gooblin Studio',
     description:
       'El universo donde Gooblin Studio crea sus juegos.',
-  },
-  icons: {
-    icon: '/favicon.ico',
+    images: [socialImage.url],
   },
 };
 
