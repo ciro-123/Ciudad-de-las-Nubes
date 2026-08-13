@@ -357,8 +357,18 @@ a:hover {
 }
 
 .etapa-panel__arrow-btn > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   font-size: 24px;
   line-height: 1;
+}
+
+.etapa-panel__arrow-btn--open > span {
+  position: relative;
+  top: -1px;
 }
 
 .etapa-panel__arrow-btn:hover {
