@@ -356,6 +356,11 @@ a:hover {
               border-color var(--cdln-transition-color);
 }
 
+.etapa-panel__arrow-btn > span {
+  font-size: 24px;
+  line-height: 1;
+}
+
 .etapa-panel__arrow-btn:hover {
   background: var(--cdln-accent);
   color: var(--cdln-bg-base);

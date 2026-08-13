@@ -115,13 +115,7 @@ export default function EtapaPanel({ index, isActive }: EtapaPanelProps) {
               aria-expanded={isDrawerOpen}
               type="button"
             >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                {isDrawerOpen ? (
-                  <path d="M13 4l-6 6 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                ) : (
-                  <path d="M7 4l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                )}
-              </svg>
+              <span aria-hidden="true">{isDrawerOpen ? '-' : '+'}</span>
             </button>
           </div>
 
