@@ -26,7 +26,7 @@ const socialImage = {
 export const metadata: Metadata = {
   title: 'Ciudad de las Nubes — Gooblin Studio',
   description:
-    'Descubre la cronología del universo de Ciudad de las Nubes, el mundo donde Gooblin Studio crea sus juegos. Desde las Leyendas hasta las Torres Celestiales.',
+    'Ciudad de las Nubes\'s official hub - By Gooblin Studio',
   keywords: [
     'Gooblin Studio',
     'Ciudad de las Nubes',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ciudad de las Nubes — Gooblin Studio',
     description:
-      'El universo donde Gooblin Studio crea sus juegos. Explora la cronología desde las Leyendas hasta las Torres Celestiales.',
+      'Ciudad de las Nubes\'s official hub - By Gooblin Studio',
     url: 'https://gooblinstudio.com',
     siteName: 'Gooblin Studio',
     type: 'website',
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Ciudad de las Nubes — Gooblin Studio',
     description:
-      'El universo donde Gooblin Studio crea sus juegos.',
+      'Ciudad de las Nubes\'s official hub - By Gooblin Studio',
     images: [socialImage.url],
   },
 };
