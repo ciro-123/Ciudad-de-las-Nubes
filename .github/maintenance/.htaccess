@@ -3,8 +3,8 @@
   RewriteEngine On
   RewriteBase /
 
-  # Bypass redirect for maintenance.html and static asset types
+  # Bypass rewrite for maintenance.html and static asset types
   RewriteCond %{REQUEST_URI} !/maintenance\.html$
   RewriteCond %{REQUEST_URI} !\.(css|js|jpg|jpeg|png|gif|svg|webp|ico|woff|woff2)$ [NC]
-  RewriteRule ^ /maintenance.html [R=302,L]
+  RewriteRule ^ /maintenance.html [L]
 </IfModule>
