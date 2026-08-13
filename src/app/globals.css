@@ -393,8 +393,18 @@ a:hover {
 }
 
 .etapa-panel__arrow-btn > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   font-size: 24px;
   line-height: 1;
+}
+
+.etapa-panel__arrow-btn--open > span {
+  position: relative;
+  top: -1px;
 }
 
 .etapa-panel__arrow-btn:hover {
@@ -901,215 +911,6 @@ a:hover {
   opacity: 0.7;
 }
 
-/* ---------- Landing Page ---------- */
-.landing-page {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 48px;
-  padding: 80px 40px;
-  /* Blue sky background — Liberación palette */
-  background: linear-gradient(
-    180deg,
-    #5EADDF 0%,
-    #7AAAD0 30%,
-    #8ECAE6 60%,
-    #C8E6F5 100%
-  );
-  overflow: hidden;
-}
-
-/* Soft cloud-like shapes via pseudo-elements */
-.landing-page::before,
-.landing-page::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.landing-page::before {
-  width: 600px;
-  height: 300px;
-  top: 10%;
-  left: -10%;
-  animation: cloud-drift-1 25s ease-in-out infinite alternate;
-}
-
-.landing-page::after {
-  width: 500px;
-  height: 250px;
-  bottom: 15%;
-  right: -8%;
-  animation: cloud-drift-2 30s ease-in-out infinite alternate;
-}
-
-@keyframes cloud-drift-1 {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(80px); }
-}
-
-@keyframes cloud-drift-2 {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-60px); }
-}
-
-.landing-page__hero {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
-
-.landing-page__title {
-  font-family: var(--cdln-font-display);
-  font-size: clamp(3rem, 9vw, 6.5rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #FFFFFF;
-  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.12),
-               0 1px 6px rgba(0, 0, 0, 0.08);
-  margin-bottom: 12px;
-  line-height: 1.1;
-}
-
-.landing-page__subtitle {
-  font-family: var(--cdln-font-body);
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
-  color: rgba(255, 255, 255, 0.85);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  max-width: none;
-}
-
-/* ---------- Landing Page Catalog ---------- */
-.landing-page__catalog {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  max-width: 700px;
-  width: 100%;
-}
-
-.landing-page__card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  padding: 20px 28px;
-  min-width: 200px;
-  flex: 1 1 200px;
-  max-width: 320px;
-  border-radius: 8px;
-  background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.3s ease,
-              box-shadow 0.3s ease,
-              border-color 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Accent glow line at top of card */
-.landing-page__card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--card-accent);
-}
-
-.landing-page__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border-color: var(--card-accent);
-  opacity: 1;
-}
-
-.landing-page__card-etapa {
-  font-family: var(--cdln-font-ui);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--card-accent);
-  opacity: 0.85;
-}
-
-.landing-page__card-title {
-  font-family: var(--cdln-font-display);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--card-text);
-  line-height: 1.2;
-}
-
-.landing-page__card-arrow {
-  font-size: 18px;
-  color: var(--card-accent);
-  transition: transform var(--cdln-transition-fast);
-  margin-top: 4px;
-}
-
-.landing-page__card:hover .landing-page__card-arrow {
-  transform: translateX(6px);
-}
-
-/* ---------- Landing Page CTA ---------- */
-.landing-page__cta {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 36px;
-  font-family: var(--cdln-font-ui);
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 40px;
-  cursor: pointer;
-  transition: background var(--cdln-transition-fast),
-              border-color var(--cdln-transition-fast),
-              transform var(--cdln-transition-fast);
-}
-
-.landing-page__cta:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-}
-
-.landing-page__cta-chevron {
-  font-size: 18px;
-  animation: bounce-down 2s ease-in-out infinite;
-}
-
-@keyframes bounce-down {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-
 /* ---------- Reduced Motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1223,20 +1024,5 @@ a:hover {
     padding: 80px 24px 32px;
   }
 
-  /* Landing page mobile */
-  .landing-page {
-    padding: 60px 24px;
-    gap: 36px;
-  }
-
-  .landing-page__catalog {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .landing-page__card {
-    max-width: 100%;
-    min-width: auto;
-  }
 }
 

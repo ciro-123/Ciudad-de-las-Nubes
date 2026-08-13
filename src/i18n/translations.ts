@@ -19,9 +19,6 @@ export interface Translations {
   comingSoon: string;
   noGamesYet: string;
   noComicsYet: string;
-  enterTimeline: string;
-  landingTitle: string;
-  landingSubtitle: string;
   copyEmailAria: string;
   copiedClipboard: string;
   etapas: EtapaContent[];
@@ -41,9 +38,6 @@ const translations: Record<Language, Translations> = {
     comingSoon: 'Próximamente...',
     noGamesYet: 'Aún no hay juegos en esta etapa',
     noComicsYet: 'Aún no hay cómics en esta etapa',
-    enterTimeline: 'Explorar la Cronología',
-    landingTitle: 'Ciudad de las Nubes',
-    landingSubtitle: 'El universo de Gooblin Studio',
     copyEmailAria: 'Copiar correo al portapapeles',
     copiedClipboard: 'Copiado en el portapapeles',
     etapas: [
@@ -93,9 +87,6 @@ const translations: Record<Language, Translations> = {
     comingSoon: 'Coming soon...',
     noGamesYet: 'No games in this stage yet',
     noComicsYet: 'No comics in this stage yet',
-    enterTimeline: 'Explore the Timeline',
-    landingTitle: 'Ciudad de las Nubes',
-    landingSubtitle: 'The Gooblin Studio Universe',
     copyEmailAria: 'Copy email to clipboard',
     copiedClipboard: 'Copied to clipboard',
     etapas: [
