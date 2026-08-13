@@ -17,7 +17,7 @@ const alegreya = Alegreya({
 });
 
 const socialImage = {
-  url: 'https://gooblinstudio.com/banner.jpg',
+  url: 'https://gooblinstudio.com/lienzo.webp',
   width: 1200,
   height: 630,
   alt: 'Ciudad de las Nubes — Gooblin Studio',

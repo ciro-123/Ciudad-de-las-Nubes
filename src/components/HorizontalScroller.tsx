@@ -306,6 +306,7 @@ export default function HorizontalScroller() {
         '--cdln-text-primary': interpolatedColors.textPrimary,
         '--cdln-text-secondary': interpolatedColors.textSecondary,
         '--cdln-content-bg': interpolatedColors.contentBg,
+        '--cdln-content-bg-opaque': interpolatedColors.contentBg.replace(/[\d.]+\)$/, '1)'),
         '--cdln-card-border': interpolatedColors.cardBorder,
       } as React.CSSProperties),
     [interpolatedColors]

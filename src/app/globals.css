@@ -981,20 +981,103 @@ a:hover {
 /* ---------- Mobile Adjustments ---------- */
 @media (max-width: 768px) {
   .etapa-panel {
-    padding: 40px 24px;
+    padding: 24px 12px;
+    flex: 0 0 88vw;
+    width: 88vw;
+  }
+
+  .horizontal-scroller__track::before,
+  .horizontal-scroller__track::after {
+    flex: 0 0 6vw;
+    width: 6vw;
   }
 
   .etapa-panel__content {
     max-width: 100%;
+    max-height: calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Keep main card perfectly centered in frame when drawer opens on mobile & make background fully opaque */
+  .etapa-panel--active .etapa-panel__content--drawer-open {
+    transform: scale(1) translateX(0) translateY(0) !important;
+    background: var(--cdln-content-bg-opaque) !important;
   }
 
   .etapa-panel__image-container {
-    height: 280px;
+    height: clamp(150px, 26vh, 210px);
+    flex-shrink: 0;
   }
 
   .etapa-panel__text-container {
-    padding: 0 20px 32px;
-    margin-top: -36px;
+    padding: 0 16px 24px;
+    margin-top: -24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+  }
+
+  .etapa-panel__title {
+    font-size: clamp(1.4rem, 5vw, 2.1rem);
+    margin-bottom: 8px;
+  }
+
+  .etapa-panel__body {
+    font-size: clamp(0.85rem, 3.4vw, 0.96rem);
+    line-height: 1.6;
+    margin: 0 auto 16px;
+    text-align: center;
+    text-align-last: center;
+  }
+
+  .etapa-panel__divider {
+    margin: 0 auto 12px;
+  }
+
+  /* Full card drawer overlay for mobile with 100% opaque background */
+  .etapa-panel__drawer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-left: none;
+    border-radius: var(--cdln-radius);
+    padding: 24px 20px 24px 24px;
+    background: var(--cdln-content-bg-opaque) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 15;
+    box-shadow: none;
+  }
+
+  .etapa-panel__drawer--open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .etapa-panel__drawer-inner {
+    padding-right: 4px;
+  }
+
+  .etapa-panel__arrow-btn {
+    width: 32px;
+    height: 32px;
+    z-index: 25;
+  }
+
+  .contact-shortcut {
+    bottom: 76px;
+    right: 16px;
   }
 
   .timeline-nav {
@@ -1024,31 +1107,6 @@ a:hover {
 
   .etapa-panel__bg-text {
     font-size: clamp(4rem, 20vw, 10rem);
-  }
-
-  .etapa-panel__content-inner {
-    --drawer-width: min(82vw, 280px);
-  }
-
-  .etapa-panel__drawer {
-    padding: 18px 16px 18px 38px;
-  }
-
-  .etapa-panel__drawer-inner {
-    padding-right: 2px;
-  }
-
-  .etapa-panel__arrow-btn {
-    width: 30px;
-    height: 30px;
-  }
-
-  .etapa-panel__arrow-btn--right {
-    right: 8px;
-  }
-
-  .etapa-panel__arrow-btn--left {
-    left: 8px;
   }
 
   /* Mobile sidebar: slide from top instead of left */
