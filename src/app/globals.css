@@ -203,8 +203,19 @@ a:hover {
 /* ---------- Desktop Stage Peek (Adjacent card previews) ---------- */
 @media (min-width: 769px) {
   .horizontal-scroller__track {
-    padding-left: 22vw;
-    padding-right: 22vw;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .horizontal-scroller__track::before,
+  .horizontal-scroller__track::after {
+    content: '';
+    display: block;
+    flex: 0 0 22vw;
+    width: 22vw;
+    height: 100%;
+    flex-shrink: 0;
+    pointer-events: none;
   }
 
   .etapa-panel {
