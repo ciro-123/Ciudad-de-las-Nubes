@@ -1,0 +1,10 @@
+# Temporary Maintenance htaccess rule for OVH during push deployment
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Bypass redirect for maintenance.html and static asset types
+  RewriteCond %{REQUEST_URI} !/maintenance\.html$
+  RewriteCond %{REQUEST_URI} !\.(css|js|jpg|jpeg|png|gif|svg|webp|ico|woff|woff2)$ [NC]
+  RewriteRule ^ /maintenance.html [R=302,L]
+</IfModule>

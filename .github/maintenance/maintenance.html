@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciudad de las Nubes — Actualizando</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..700;1,400..700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <meta http-equiv="refresh" content="6">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #F5F2ED;
+      background-image: 
+        radial-gradient(circle at 50% 30%, rgba(201, 168, 76, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(122, 96, 32, 0.08) 0%, transparent 50%);
+      color: #2C2416;
+      font-family: 'Alegreya', 'Palatino Linotype', serif;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .card {
+      max-width: 540px;
+      width: 100%;
+      padding: 48px 36px;
+      background: rgba(245, 240, 230, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(122, 96, 32, 0.2);
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(44, 36, 22, 0.06);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cloud-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      color: #7A6020;
+      animation: pulseGlow 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(1); opacity: 0.85; filter: drop-shadow(0 0 2px rgba(122, 96, 32, 0.2)); }
+      100% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 12px rgba(122, 96, 32, 0.4)); }
+    }
+
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #7A6020;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: #2C2416;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #5A4A2A;
+      margin-bottom: 28px;
+    }
+
+    .spinner-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      background: rgba(122, 96, 32, 0.08);
+      border-radius: 20px;
+      font-size: 14px;
+      color: #7A6020;
+      font-family: 'Alegreya', serif;
+    }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(122, 96, 32, 0.2);
+      border-top-color: #7A6020;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <svg class="cloud-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17.5 19.5H6.5C3.5 19.5 1.5 17.5 1.5 14.5C1.5 11.8 3.5 9.7 6.1 9.5C6.7 6.3 9.4 4 12.5 4C16.1 4 19 6.7 19.4 10.2C21.4 10.6 22.5 12.3 22.5 14.5C22.5 17.3 20.3 19.5 17.5 19.5Z" />
+    </svg>
+    <div class="brand">Ciudad de las Nubes</div>
+    <h1>Desplegando actualización</h1>
+    <p>Estamos publicando una nueva versión del sitio web. En unos momentos la página estará lista y disponible.</p>
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <span>Reconectando automáticamente...</span>
+    </div>
+  </main>
+</body>
+</html>

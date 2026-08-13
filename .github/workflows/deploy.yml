@@ -32,6 +32,16 @@ jobs:
         echo "Contents of out directory:"
         ls -la ./out/ || echo "WARNING: The out folder does not exist!"
 
+    - name: Enable maintenance page on OVH
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: .github/maintenance/
+        server-dir: www/
+        dangerous-clean-slate: false
+
     - name: Sync compiled build to OVH
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -40,4 +50,4 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: out/
         server-dir: www/
-        dangerous-clean-slate: true
+        dangerous-clean-slate: false
