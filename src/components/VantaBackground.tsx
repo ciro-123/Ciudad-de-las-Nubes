@@ -56,6 +56,8 @@ export default function VantaBackground({
           gyroControls: false,
           minHeight: 200.0,
           minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 2.0,
           skyColor,
           cloudColor,
           cloudShadowColor,
@@ -71,8 +73,21 @@ export default function VantaBackground({
 
     init();
 
+    // Pause animation calculations when tab is inactive to save battery/GPU
+    const handleVisibilityChange = () => {
+      if (!effectRef.current) return;
+      if (document.hidden) {
+        effectRef.current.setOptions({ speed: 0 });
+      } else {
+        effectRef.current.setOptions({ speed: 0.7 });
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     return () => {
       cancelled = true;
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (effectRef.current) {
         effectRef.current.destroy();
         effectRef.current = null;
