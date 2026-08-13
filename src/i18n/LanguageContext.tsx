@@ -7,43 +7,80 @@ interface LanguageContextType {
   language: Language;
   t: Translations;
   toggleLanguage: () => void;
+  setLanguage: (lang: Language) => void;
 }
 
 const LanguageContext = createContext<LanguageContextType>({
   language: 'es',
   t: translations.es,
-  toggleLanguage: () => {},
+  toggleLanguage: () => { },
+  setLanguage: () => { },
 });
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  // Use a stable initial value that matches server rendering to avoid
-  // hydration mismatches. Read localStorage only after mount and then
-  // update the language if different.
-  const [language, setLanguage] = useState<Language>('es');
+/**
+ * Detects default language based on browser/device settings.
+ * Returns 'es' if device language is Spanish ('es') or Catalan ('ca').
+ * Returns 'en' for any other device language.
+ */
+function getDeviceDefaultLanguage(): Language {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+    return 'en';
+  }
 
-  // On mount, sync from saved preference (if any) without causing
-  // a server/client mismatch on first paint.
+  const langs = navigator.languages && navigator.languages.length
+    ? navigator.languages
+    : [navigator.language];
+
+  for (const lang of langs) {
+    if (lang) {
+      const lower = lang.toLowerCase();
+      if (lower.startsWith('es') || lower.startsWith('ca')) {
+        return 'es';
+      }
+    }
+  }
+
+  return 'en';
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [language, setLanguageState] = useState<Language>('es');
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // On mount, sync from saved preference (if any) or detect device language
   useEffect(() => {
     const saved = window.localStorage.getItem('cdln-lang') as Language | null;
-    if (saved && (saved === 'es' || saved === 'en') && saved !== language) {
-      setLanguage(saved);
+
+    if (saved && (saved === 'es' || saved === 'en')) {
+      setLanguageState(saved);
+    } else {
+      const defaultLang = getDeviceDefaultLanguage();
+      setLanguageState(defaultLang);
+      window.localStorage.setItem('cdln-lang', defaultLang);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setIsInitialized(true);
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem('cdln-lang', language);
-    document.documentElement.lang = language;
-  }, [language]);
+    if (isInitialized) {
+      window.localStorage.setItem('cdln-lang', language);
+      document.documentElement.lang = language;
+    }
+  }, [language, isInitialized]);
 
   const toggleLanguage = useCallback(() => {
-    setLanguage((prev) => (prev === 'es' ? 'en' : 'es'));
+    setLanguageState((prev) => (prev === 'es' ? 'en' : 'es'));
+  }, []);
+
+  const setLanguage = useCallback((lang: Language) => {
+    setLanguageState(lang);
   }, []);
 
   const value = {
     language,
     t: translations[language],
     toggleLanguage,
+    setLanguage,
   };
 
   return (
