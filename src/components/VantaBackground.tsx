@@ -36,12 +36,13 @@ export default function VantaBackground({
 
     let cancelled = false;
 
-    // Detect touch / mobile / small-screen devices and reduced-motion preference
+    // Detect touch / mobile / tablet devices (including iPad) and reduced-motion preference
     const isMobileOrTouch =
       typeof window !== 'undefined' &&
-      (window.innerWidth <= 768 ||
+      (window.innerWidth <= 1024 ||
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-        ('ontouchstart' in window && window.innerWidth <= 1024));
+        'ontouchstart' in window ||
+        (navigator.maxTouchPoints && navigator.maxTouchPoints > 0));
 
     const prefersReducedMotion =
       typeof window !== 'undefined' &&

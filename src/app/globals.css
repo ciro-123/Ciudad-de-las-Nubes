@@ -226,7 +226,7 @@ a:hover {
 }
 
 /* ---------- Desktop Stage Peek (Adjacent card previews) ---------- */
-@media (min-width: 769px) {
+@media (min-width: 1025px) and (hover: hover) {
   .horizontal-scroller__track {
     padding-left: 0;
     padding-right: 0;
@@ -968,8 +968,8 @@ a:hover {
   }
 }
 
-/* ---------- Mobile Adjustments ---------- */
-@media (max-width: 768px) {
+/* ---------- Mobile & Tablet Adjustments (including iPad) ---------- */
+@media (max-width: 1024px), (hover: none), (pointer: coarse) {
   .etapa-panel {
     padding: 40px 24px;
   }
