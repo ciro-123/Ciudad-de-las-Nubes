@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { etapaGameLinks } from '@/i18n/translations';
 import ContactShortcut from './ContactShortcut';
@@ -127,6 +128,12 @@ export default function SideMenu() {
           {/* Contact section — visible inside hamburger menu on phones */}
           <div className="side-menu__contact-wrapper">
             <ContactShortcut isMobileMenu />
+          </div>
+
+          <div className="side-menu__section side-menu__about">
+            <Link href="/about-us" className="side-menu__link" onClick={close}>
+              {t.aboutUs}
+            </Link>
           </div>
         </div>
       </nav>

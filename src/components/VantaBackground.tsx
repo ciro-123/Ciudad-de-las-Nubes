@@ -27,13 +27,9 @@ export default function VantaBackground({
   const containerRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const effectRef = useRef<any>(null);
-  const mountedRef = useRef(false);
 
   // Initialize Vanta on mount
   useEffect(() => {
-    if (mountedRef.current) return;
-    mountedRef.current = true;
-
     let cancelled = false;
 
     // Detect touch / mobile / small-screen devices and reduced-motion preference
@@ -93,6 +89,18 @@ export default function VantaBackground({
 
     init();
 
+    // Restore the WebGL canvas when the browser brings the page back from its history cache.
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (!event.persisted && effectRef.current) return;
+
+      if (effectRef.current) {
+        effectRef.current.destroy();
+        effectRef.current = null;
+      }
+      cancelled = false;
+      init();
+    };
+
     // Pause animation calculations when tab is inactive or low power to save battery/GPU
     const handleVisibilityChange = () => {
       if (!effectRef.current) return;
@@ -103,10 +111,12 @@ export default function VantaBackground({
       }
     };
 
+    window.addEventListener('pageshow', handlePageShow);
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       cancelled = true;
+      window.removeEventListener('pageshow', handlePageShow);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (effectRef.current) {
         effectRef.current.destroy();

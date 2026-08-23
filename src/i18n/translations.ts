@@ -16,6 +16,9 @@ export interface Translations {
   visitGame: string;
   menuGames: string;
   menuComics: string;
+  aboutUs: string;
+  back: string;
+  aboutCopy: string[];
   comingSoon: string;
   noGamesYet: string;
   noComicsYet: string;
@@ -35,6 +38,14 @@ const translations: Record<Language, Translations> = {
     visitGame: 'Ver juego',
     menuGames: 'Juegos',
     menuComics: 'Cómics',
+    aboutUs: 'Sobre Nosotros',
+    back: 'Volver',
+    aboutCopy: [
+      'Ciudad de las Nubes es un universo de fantasía desarrollado por Gooblin Studio.',
+      'En él, encontraréis una gran historia que se extiende a lo largo de siete edades, cada una marcada por sus propias intrigas, grandes batallas, personajes memorables y oscuros misterios.',
+      'Trabajamos en distintos proyectos para explorar y dar a conocer las historias que pueblan este universo, desde videojuegos, relatos o cómics. Con cada proyecto, buscamos explorar una parte diferente de la extensa historia de Ciudad de las Nubes.',
+      'Actualmente, estamos trabajando en...',
+    ],
     comingSoon: 'Próximamente...',
     noGamesYet: 'Aún no hay juegos en esta etapa',
     noComicsYet: 'Aún no hay cómics en esta etapa',
@@ -84,6 +95,14 @@ const translations: Record<Language, Translations> = {
     visitGame: 'View game',
     menuGames: 'Games',
     menuComics: 'Comics',
+    aboutUs: 'About Us',
+    back: 'Back',
+    aboutCopy: [
+      'Ciudad de las Nubes is a fantasy universe developed by Gooblin Studio.',
+      'Within it, you will find a great story spanning seven ages, each marked by its own intrigues, great battles, memorable characters, and dark mysteries.',
+      'We work on different projects to explore and share the stories that inhabit this universe, from video games and written tales to comics. With each project, we seek to explore a different part of the extensive history of Ciudad de las Nubes.',
+      'Currently, we are working on...',
+    ],
     comingSoon: 'Coming soon...',
     noGamesYet: 'No games in this stage yet',
     noComicsYet: 'No comics in this stage yet',
