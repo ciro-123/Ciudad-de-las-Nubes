@@ -26,17 +26,15 @@ const socialImage = {
 export const metadata: Metadata = {
   title: 'Ciudad de las Nubes — Gooblin Studio',
   description:
-    'Ciudad de las Nubes\'s official hub - By Gooblin Studio',
+    'Ciudad de las Nubes is a fantasy universe by Gooblin Studio: an epic story spanning seven ages of intrigue, great battles, memorable characters and dark mysteries.',
   keywords: [
     'Gooblin Studio',
     'Ciudad de las Nubes',
     'Bohemundo',
-    'juegos indie',
-    'universo de fantasía',
-    'ficción fantástica',
+    'indiegames',
+    'fantasy universe',
     'lore',
     'timeline',
-    'cronología',
   ],
   authors: [{ name: 'Gooblin Studio' }],
   metadataBase: new URL('https://gooblinstudio.com'),
@@ -60,18 +58,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ciudad de las Nubes — Gooblin Studio',
     description:
-      'Ciudad de las Nubes\'s official hub - By Gooblin Studio',
+      'Ciudad de las Nubes is a fantasy universe by Gooblin Studio: an epic story spanning seven ages of intrigue, great battles, memorable characters and dark mysteries.',
     url: 'https://gooblinstudio.com',
     siteName: 'Gooblin Studio',
     type: 'website',
-    locale: 'es_ES',
+    locale: 'en_US',
     images: [socialImage],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ciudad de las Nubes — Gooblin Studio',
     description:
-      'Ciudad de las Nubes\'s official hub - By Gooblin Studio',
+      'Ciudad de las Nubes is a fantasy universe by Gooblin Studio: an epic story spanning seven ages of intrigue, great battles, memorable characters and dark mysteries.',
     images: [socialImage.url],
   },
 };
@@ -81,6 +79,41 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://gooblinstudio.com/#organization',
+        name: 'Gooblin Studio',
+        url: 'https://gooblinstudio.com',
+        logo: 'https://gooblinstudio.com/favicon.png',
+        sameAs: [
+          'https://2high2work.itch.io',
+          'https://store.steampowered.com/app/2393490/Night_of_Wolves',
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://gooblinstudio.com/#website',
+        url: 'https://gooblinstudio.com',
+        name: 'Ciudad de las Nubes — Gooblin Studio',
+        publisher: { '@id': 'https://gooblinstudio.com/#organization' },
+        inLanguage: 'en',
+      },
+      {
+        '@type': 'CreativeWork',
+        '@id': 'https://gooblinstudio.com/#creativework',
+        name: 'Ciudad de las Nubes',
+        description:
+          "Ciudad de las Nubes is Gooblin Studio's fantasy universe: an epic story spanning seven ages of intrigue, great battles, memorable characters and dark mysteries.",
+        creator: { '@id': 'https://gooblinstudio.com/#organization' },
+        about: 'Bohemundo',
+        url: 'https://gooblinstudio.com',
+      },
+    ],
+  };
+
   return (
     <html
       lang="es"
@@ -88,6 +121,10 @@ export default function RootLayout({
     >
       <head>
         <meta name="theme-color" content="#F5F2ED" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body suppressHydrationWarning>
         {/* Skip to content link for accessibility */}
@@ -99,3 +136,4 @@ export default function RootLayout({
     </html>
   );
 }
+

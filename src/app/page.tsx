@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <LanguageProvider>
       <main id="main-content">
+        <h1 className="sr-only">Ciudad de las Nubes — Gooblin Studio</h1>
         <HorizontalScroller />
         <ContactShortcut />
       </main>

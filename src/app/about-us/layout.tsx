@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sobre Nosotros — Gooblin Studio | Ciudad de las Nubes',
+  title: 'About Us — Gooblin Studio | Ciudad de las Nubes',
   description:
-    'Conoce a Gooblin Studio, el equipo indie detrás de Ciudad de las Nubes, Bohemundo y sus proyectos Fishheads y Night of Wolves.',
+    'Meet Gooblin Studio, the indie team behind Ciudad de las Nubes, Bohemundo, Fishheads and Night of Wolves.',
   keywords: [
     'Gooblin Studio',
     'Ciudad de las Nubes',
     'Bohemundo',
-    'sobre nosotros',
-    'equipo indie',
-    'desarrolladores de videojuegos',
+    'about us',
+    'indie team',
+    'game developers',
     'Fishheads',
     'Night of Wolves',
   ],
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     canonical: 'https://gooblinstudio.com/about-us',
   },
   openGraph: {
-    title: 'Sobre Nosotros — Gooblin Studio | Ciudad de las Nubes',
+    title: 'About Us — Gooblin Studio | Ciudad de las Nubes',
     description:
-      'Conoce a Gooblin Studio, el equipo indie detrás de Ciudad de las Nubes y Bohemundo.',
+      'Meet Gooblin Studio, the indie team behind Ciudad de las Nubes and Bohemundo.',
     url: 'https://gooblinstudio.com/about-us',
     siteName: 'Gooblin Studio',
     type: 'website',
-    locale: 'es_ES',
+    locale: 'en_US',
     images: [
       {
         url: 'https://gooblinstudio.com/lienzo.webp',
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sobre Nosotros — Gooblin Studio | Ciudad de las Nubes',
+    title: 'About Us — Gooblin Studio | Ciudad de las Nubes',
     description:
-      'Conoce a Gooblin Studio, el equipo indie detrás de Ciudad de las Nubes y Bohemundo.',
+      'Meet Gooblin Studio, the indie team behind Ciudad de las Nubes and Bohemundo.',
     images: ['https://gooblinstudio.com/lienzo.webp'],
   },
 };
@@ -48,5 +48,23 @@ export default function AboutUsLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About Us — Gooblin Studio',
+    url: 'https://gooblinstudio.com/about-us',
+    about: { '@id': 'https://gooblinstudio.com/#organization' },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
+}
   return children;
 }
