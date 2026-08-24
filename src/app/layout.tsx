@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   keywords: [
     'Gooblin Studio',
     'Ciudad de las Nubes',
+    'Bohemundo',
     'juegos indie',
     'universo de fantasía',
     'ficción fantástica',
