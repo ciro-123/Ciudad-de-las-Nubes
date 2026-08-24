@@ -90,7 +90,8 @@ export default function RootLayout({
         logo: 'https://gooblinstudio.com/favicon.png',
         sameAs: [
           'https://2high2work.itch.io',
-          'https://store.steampowered.com/app/2393490/Night_of_Wolves',
+          'https://www.instagram.com/gooblinstudio',
+          'https://twitter.com/gooblinstudio',
         ],
       },
       {
@@ -108,8 +109,37 @@ export default function RootLayout({
         description:
           "Ciudad de las Nubes is Gooblin Studio's fantasy universe: an epic story spanning seven ages of intrigue, great battles, memorable characters and dark mysteries.",
         creator: { '@id': 'https://gooblinstudio.com/#organization' },
-        about: 'Bohemundo',
         url: 'https://gooblinstudio.com',
+        about: { '@id': 'https://gooblinstudio.com/#bohemundo' },
+      },
+      {
+        '@type': 'Person',
+        '@id': 'https://gooblinstudio.com/#bohemundo',
+        name: 'Bohemundo',
+      },
+      {
+        '@type': 'VideoGame',
+        '@id': 'https://gooblinstudio.com/#pong-in-caroteo',
+        name: 'Pong in Caroteo',
+        url: 'https://2high2work.itch.io/pong-in-caroteo',
+        author: { '@id': 'https://gooblinstudio.com/#organization' },
+        isPartOf: { '@id': 'https://gooblinstudio.com/#creativework' },
+      },
+      {
+        '@type': 'VideoGame',
+        '@id': 'https://gooblinstudio.com/#night-of-wolves',
+        name: 'Night of Wolves',
+        url: 'https://store.steampowered.com/app/2393490/Night_of_Wolves/',
+        author: { '@id': 'https://gooblinstudio.com/#organization' },
+        isPartOf: { '@id': 'https://gooblinstudio.com/#creativework' },
+      },
+      {
+        '@type': 'VideoGame',
+        '@id': 'https://gooblinstudio.com/#the-tower',
+        name: 'The Tower',
+        url: 'https://2high2work.itch.io/the-tower',
+        author: { '@id': 'https://gooblinstudio.com/#organization' },
+        isPartOf: { '@id': 'https://gooblinstudio.com/#creativework' },
       },
     ],
   };
